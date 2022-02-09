@@ -1,0 +1,6 @@
+*.o
+*.run
+editor-example
+*.mp3
+*.temp
+id3_editor
