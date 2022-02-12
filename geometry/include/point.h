@@ -8,17 +8,19 @@ using namespace std;
 class Point {
    private:
     int dimensions;
-    int* cords;
+    long double* cords;
 
    public:
-    Point(int x, int y);
+    Point(long double x, long double y);
     Point();
-    void set(int x, int y);
-    pair<int, int> get();    
+    void set(long double x, long double y);
+    pair<long double, long double> get();    
     ~Point();
 
     Point operator+ (const Point &b);
     Point operator- (const Point &b);
+    Point operator* (const int k);
+    Point operator/ (const int k);
 
     friend ostream& operator<<(ostream& os, const Point& p);
 };
