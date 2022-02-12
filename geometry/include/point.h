@@ -11,8 +11,9 @@ class Point {
     long double* cords;
 
    public:
-    Point(long double x, long double y);
     Point();
+    Point(long double x, long double y);
+    Point(const Point &p);
     void set(long double x, long double y);
     pair<long double, long double> get();    
     ~Point();

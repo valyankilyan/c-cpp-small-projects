@@ -4,6 +4,11 @@
 #include <utility>
 using namespace std;
 
+Point::Point() {
+    this->dimensions = 2;
+    this->cords = new long double[this->dimensions];
+}
+
 Point::Point(long double x, long double y) {
     this->dimensions = 2;
     this->cords = new long double[dimensions];
@@ -11,9 +16,12 @@ Point::Point(long double x, long double y) {
     this->cords[1] = y;
 }
 
-Point::Point() {
-    this->dimensions = 2;
-    this->cords = new long double[this->dimensions];
+Point::Point(const Point &p) {
+    this->dimensions = p.dimensions;
+    this->cords = new long double[p.dimensions];
+    for (int i = 0; i < p.dimensions; i++) {
+        this->cords[i] = p.cords[i];
+    }
 }
 
 Point::~Point() {

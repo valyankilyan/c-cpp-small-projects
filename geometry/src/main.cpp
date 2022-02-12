@@ -13,6 +13,9 @@ int main() {
     cout << p1 << " * " << 10 << " = " << p1 * 10 << endl;
     cout << p1 << " / " << 10 << " = " << p1 / 10 << endl;
 
+    Point p3 = p1;
+    cout << "Point3 = " << p3 << endl;
+
     // delete p1;
     // delete p2;
 }
