@@ -31,3 +31,12 @@ void Point::print() {
     }
     cout << this->cords[dimensions - 1] << ")";
 }
+
+ostream& operator<<(ostream& os, const Point& p) {
+    os << "(";
+    for (int i = 0; i < p.dimensions - 1; i++) {
+        os << p.cords[i] << ", ";
+    }
+    os << p.cords[p.dimensions - 1] << ")";
+    return os;
+}

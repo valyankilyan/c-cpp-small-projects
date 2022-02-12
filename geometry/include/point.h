@@ -1,6 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <ostream>
 #include <utility>
 using namespace std;
 
@@ -15,6 +16,9 @@ class Point {
     pair<int, int> get();
     void print();
     ~Point();
+
+    friend ostream& operator<<(ostream& os, const Point& p);
+    // friend Point operator+ (Point& b);
 };
 
 #endif
