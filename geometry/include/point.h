@@ -7,18 +7,20 @@ using namespace std;
 
 class Point {
    private:
-    int dimensions = 2;
+    int dimensions;
     int* cords;
 
    public:
     Point(int x, int y);
+    Point();
     void set(int x, int y);
-    pair<int, int> get();
-    void print();
+    pair<int, int> get();    
     ~Point();
 
+    Point operator+ (const Point &b);
+    Point operator- (const Point &b);
+
     friend ostream& operator<<(ostream& os, const Point& p);
-    // friend Point operator+ (Point& b);
 };
 
 #endif
