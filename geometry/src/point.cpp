@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <utility>
+#include <math.h>
 using namespace std;
 
 Point::Point()
@@ -40,6 +41,14 @@ void Point::operator=(const Point& b) {
 
 pair<long double, long double> Point::get() {
     return make_pair(this->cords[0], this->cords[1]);
+}
+
+long double Point::vector_lenght(const Point& b) {
+    long double sum = 0;
+    for (int i = 0; i < this->dimensions; i++) {
+        sum += (b.cords[i] - this->cords[i])*(b.cords[i] - this->cords[i]);
+    }
+    return sqrtf64x(sum);
 }
 
 Point Point::operator+(const Point& b) {
@@ -107,6 +116,10 @@ bool Point::operator==(const Point& b) {
 
 bool Point::operator!=(const Point& b) {
     return !(operator==(b));
+}
+
+long double Point::operator[](int num) {
+    return cords[num];
 }
 
 ostream& operator<<(ostream& os, const Point& p) {

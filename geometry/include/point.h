@@ -13,9 +13,10 @@ class Point {
     Point();
     Point(long double x, long double y);
     Point(const Point& p);
+    ~Point();
     void set(long double x, long double y);
     pair<long double, long double> get();
-    ~Point();
+    long double vector_lenght(const Point& p);
 
     Point operator+(const Point& b);
     Point operator-(const Point& b);
@@ -31,6 +32,8 @@ class Point {
     bool operator!=(const Point& b);
 
     void operator=(const Point& b);
+
+    long double operator[](int num);
 
     friend ostream& operator<<(ostream& os, const Point& p);
     friend istream& operator>>(istream& is, Point& p);

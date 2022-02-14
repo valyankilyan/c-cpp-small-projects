@@ -9,6 +9,9 @@ int main() {
     Point p2 = Point();
     cin >> p2;
 
+    cout << "p1 = " << p1 << endl;
+    cout << "p2 = " << p2 << endl;
+
     cout << endl;
     cout << p1 << " + " << p2 << " = " << p1 + p2 << endl;
     cout << p1 << " - " << p2 << " = " << p1 - p2 << endl;
@@ -28,7 +31,12 @@ int main() {
 
     cout << "p1 == p3 = " << (p1 == p3) << endl;
     cout << "p1 != p2 = " << (p1 != p2) << endl;
+
+    cout << "p1 = " << p1 << endl;
+    cout << "p2 = " << p2 << endl;
+    cout << "p3 = " << p3 << endl;
     
+    cout << "p1 -> p2 = " << p1.vector_lenght(p2) << endl;
 
     // delete p1;
     // delete p2;
