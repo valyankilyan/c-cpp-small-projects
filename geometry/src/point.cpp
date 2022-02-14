@@ -4,21 +4,17 @@
 #include <utility>
 using namespace std;
 
-Point::Point() {
-    this->dimensions = 2;
-    this->cords = new long double[this->dimensions];
-}
+Point::Point()
+    : dimensions(2), cords(new long double[this->dimensions]) {}
 
-Point::Point(long double x, long double y) {
-    this->dimensions = 2;
+Point::Point(long double x, long double y) : dimensions(2) {
     this->cords = new long double[dimensions];
     this->cords[0] = x;
     this->cords[1] = y;
 }
 
-Point::Point(const Point& p) {
-    this->dimensions = p.dimensions;
-    this->cords = new long double[p.dimensions];
+Point::Point(const Point& p)
+    : dimensions(p.dimensions), cords(new long double[this->dimensions]) {
     for (int i = 0; i < p.dimensions; i++) {
         this->cords[i] = p.cords[i];
     }
@@ -31,6 +27,15 @@ Point::~Point() {
 void Point::set(long double x, long double y) {
     this->cords[0] = x;
     this->cords[1] = y;
+}
+
+void Point::operator=(const Point& b) {
+    delete[] this->cords;
+    this->dimensions = b.dimensions;
+    this->cords = new long double[dimensions];
+    for (int i = 0; i < dimensions; i++) {
+        this->cords[i] = b.cords[i];
+    }
 }
 
 pair<long double, long double> Point::get() {
@@ -102,14 +107,6 @@ bool Point::operator==(const Point& b) {
 
 bool Point::operator!=(const Point& b) {
     return !(operator==(b));
-}
-
-void Point::operator=(const Point& b) {
-    this->dimensions = b.dimensions;
-    this->cords = new long double [dimensions];
-    for (int i = 0; i < dimensions; i++) {
-        this->cords[i] = b.cords[i];
-    }
 }
 
 ostream& operator<<(ostream& os, const Point& p) {
