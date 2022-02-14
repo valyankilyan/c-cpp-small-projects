@@ -38,6 +38,12 @@ int main() {
     
     cout << "p1 -> p2 = " << p1.vector_lenght(p2) << endl;
 
+    Line l = Line();
+    l.push_back(p1);
+    l.push_back(p2);
+    l.push_back(p3);
+    cout << "line perimeter = " << l.perimeter() << endl;
+
     // delete p1;
     // delete p2;
 }
