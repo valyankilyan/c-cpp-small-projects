@@ -43,6 +43,10 @@ pair<long double, long double> Point::get() {
     return make_pair(this->cords[0], this->cords[1]);
 }
 
+int Point::get_dimensions() {
+    return this->dimensions;
+}
+
 long double Point::vector_lenght(const Point& b) {
     long double sum = 0;
     for (int i = 0; i < this->dimensions; i++) {
@@ -59,7 +63,7 @@ Point Point::operator+(const Point& b) {
     return temp;
 }
 
-Point Point::operator-(const Point& b) {
+Point Point::operator-(const Point& b) {    
     Point temp = Point();
     for (int i = 0; i < dimensions; i++) {
         temp.cords[i] = cords[i] - b.cords[i];

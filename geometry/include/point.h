@@ -16,6 +16,7 @@ class Point {
     ~Point();
     void set(long double x, long double y);
     pair<long double, long double> get();
+    int get_dimensions();
     long double vector_lenght(const Point& p);
 
     Point operator+(const Point& b);

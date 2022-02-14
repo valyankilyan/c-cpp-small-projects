@@ -43,6 +43,7 @@ int main() {
     l.push_back(p2);
     l.push_back(p3);
     cout << "line perimeter = " << l.perimeter() << endl;
+    cout << "line = " << l << endl;
 
     // delete p1;
     // delete p2;

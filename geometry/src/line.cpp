@@ -4,7 +4,14 @@ using namespace std;
 
 Line::Line() {}
 
-void Line::push_back(Point p) {    
+Line::Line(const Line& l) : cords(this->cords = l.cords){}
+
+Line Line::operator=(const Line& l) {
+    cords = l.cords;
+    return *this;
+}
+
+void Line::push_back(Point p) {
     cords.push_back(p);
 }
 
@@ -17,10 +24,10 @@ void Line::delete_point(long unsigned int num) {
         return;
     }
     auto it = cords.begin();
-    while(num--) {
+    while (num--) {
         it++;
     }
-    cords.erase(it);    
+    cords.erase(it);
 }
 
 void Line::pop_back() {
@@ -36,7 +43,7 @@ void Line::set_point(long unsigned int num, Point p) {
         return;
     }
     auto it = cords.begin();
-    while(num--) {        
+    while (num--) {
         it++;
     }
     cords.emplace(it, p);
@@ -47,7 +54,7 @@ Point Line::get_point(long unsigned int num) {
         return Point();
     }
     auto it = cords.begin();
-    while(num--) {        
+    while (num--) {
         it++;
     }
     return *it;
@@ -62,17 +69,49 @@ long double Line::perimeter() {
     auto it = cords.begin();
     Point last = *it;
     while (++it != cords.end()) {
-        ans+= (*it).vector_lenght(last);
+        ans += (*it).vector_lenght(last);
         last = *it;
     }
     return ans;
 }
 
-Line operator+(const Line& b);
-Line operator-(const Line& b);
+Line Line::operator+(const Line& l) {
+    Line temp = *this;
+    for (auto p: l.cords) {
+        temp.push_back(p);
+    }
+    return temp;
+}
 
-// void Point::operator+=(const Line& b);
-// void Point::operator-=(const Line& b);
+Line Line::operator+(const Point& p) {
+    Line temp = *this;
+    temp.push_back(p);
+    return temp;
+}
 
-// bool Point::operator==(const Line& b);
-// bool Point::operator!=(const Line& b);
+void Line::operator+=(const Line& l) {
+    for (auto p: l.cords) {
+        this->push_back(p);
+    }
+}
+
+void Line::operator+=(const Point& p) {
+    this->push_back(p);
+}
+
+ostream& operator<<(ostream& os, const Line& l) {
+    int d = l.cords.size();
+    for (auto p: l.cords) {
+        d--;
+        os << "(";
+        int i = 0;
+        for (i = 0; i < p.get_dimensions() - 1; i++) {
+            os << p[i] << ", ";
+        }
+        os << p[i] << ")";
+        if (d) {
+            os << " -> ";
+        }
+    }
+    return os;
+}
