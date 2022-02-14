@@ -112,3 +112,9 @@ ostream& operator<<(ostream& os, const Point& p) {
     os << p.cords[p.dimensions - 1] << ")";
     return os;
 }
+
+istream& operator>>(istream& is, Point& p) {
+    p.dimensions = 2;
+    is >> p.cords[0] >> p.cords[1];
+    return is;
+}

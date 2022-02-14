@@ -5,7 +5,8 @@ using namespace std;
 
 int main() {
     Point p1 = Point(1, 2);
-    Point p2 = Point(10, 20);    
+    Point p2 = Point();
+    cin >> p2;
 
     cout << endl;
     cout << p1 << " + " << p2 << " = " << p1 + p2 << endl;

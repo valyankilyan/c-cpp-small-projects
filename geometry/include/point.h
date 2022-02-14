@@ -5,8 +5,7 @@
 #include <utility>
 using namespace std;
 
-class Point {
-   private:
+class Point {   
     int dimensions;
     long double* cords;
 
@@ -22,7 +21,7 @@ class Point {
     Point operator-(const Point& b);
     Point operator*(const int k);
     Point operator/(const int k);
-    
+
     void operator+=(const Point& b);
     void operator-=(const Point& b);
     void operator*=(const int k);
@@ -32,6 +31,7 @@ class Point {
     bool operator!=(const Point& b);
 
     friend ostream& operator<<(ostream& os, const Point& p);
+    friend istream& operator>>(istream& is, Point& p);
 };
 
 #endif
