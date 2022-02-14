@@ -104,6 +104,14 @@ bool Point::operator!=(const Point& b) {
     return !(operator==(b));
 }
 
+void Point::operator=(const Point& b) {
+    this->dimensions = b.dimensions;
+    this->cords = new long double [dimensions];
+    for (int i = 0; i < dimensions; i++) {
+        this->cords[i] = b.cords[i];
+    }
+}
+
 ostream& operator<<(ostream& os, const Point& p) {
     os << "(";
     for (int i = 0; i < p.dimensions - 1; i++) {

@@ -30,6 +30,8 @@ class Point {
     bool operator==(const Point& b);
     bool operator!=(const Point& b);
 
+    void operator=(const Point& b);
+
     friend ostream& operator<<(ostream& os, const Point& p);
     friend istream& operator>>(istream& is, Point& p);
 };
