@@ -1,7 +1,7 @@
 CC = g++
 FLAGS = -Wextra -Wall -g -c
 DIR = src
-MODULES = point.o main.o
+MODULES = point.o line.o main.o
 
 all: geometry clean
 
@@ -13,6 +13,9 @@ main.o: point.o
 
 point.o:
 	$(CC) $(FLAGS) $(DIR)/point.cpp
+
+line.o:
+		$(CC) $(FLAGS) $(DIR)/line.cpp
 
 clean:
 	rm -f $(MODULES)

@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "../include/point.h"
+#include "../include/line.h"
 using namespace std;
 
 int main() {
