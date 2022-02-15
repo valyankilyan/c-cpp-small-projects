@@ -18,6 +18,8 @@ class Line {
     void push_back(Point p);
     void pop_back();
     void pop_front();
+    Point front();
+    Point back();
 
     void set_point(long unsigned int num, Point p);
     void delete_point(long unsigned int num);
@@ -36,7 +38,11 @@ class Line {
     bool operator!=(const Line& b);
 
     friend ostream& operator<<(ostream& os, const Line& p);
+    
+};
 
+class ClosedLine : public Line{
+    long double perimeter();
 };
 
 #endif

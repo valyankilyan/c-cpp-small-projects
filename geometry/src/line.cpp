@@ -38,6 +38,14 @@ void Line::pop_front() {
     cords.pop_front();
 }
 
+Point Line::front() {
+    return cords.front();
+}
+
+Point Line::back() {
+    return cords.back();
+}
+
 void Line::set_point(long unsigned int num, Point p) {
     if (num >= cords.size()) {
         return;
@@ -73,6 +81,11 @@ long double Line::perimeter() {
         last = *it;
     }
     return ans;
+}
+
+long double ClosedLine::perimeter() {
+    long double ans = Line::perimeter();    
+    return ans + this->front().vector_lenght(this->back());
 }
 
 Line Line::operator+(const Line& l) {
