@@ -11,50 +11,84 @@ Line Line::operator=(const Line& l) {
     return *this;
 }
 
-void Line::push_back(Point p) {
-    cords.push_back(p);
-}
-
-void Line::push_front(Point p) {
+bool Line::push_front(Point p) {
     cords.push_front(p);
+    if (!this->validate()) {
+        cords.pop_front();
+        return 0;
+    }
+    return 1;
 }
 
-void Line::delete_point(long unsigned int num) {
+bool Line::push_back(Point p) {
+    cords.push_back(p);
+    if (!this->validate()) {
+        cords.pop_back();
+        return 0;
+    }
+    return 1;
+}
+
+bool Line::pop_front() {
+    Point save = this->front();
+    cords.pop_front();
+    if (!this->validate()) {
+        cords.push_front(save);
+        return 0;
+    }
+    return 1;
+}
+
+bool Line::pop_back() {
+    Point save = cords.back();
+    cords.pop_back();
+    if (!this->validate()) {
+        cords.push_back(save);
+        return 0;
+    }
+    return 1;
+}
+
+bool Line::delete_point(long unsigned int num) {
     if (num >= cords.size()) {
-        return;
+        return 0;
     }
     auto it = cords.begin();
     while (num--) {
         it++;
     }
-    cords.erase(it);
-}
-
-void Line::pop_back() {
-    cords.pop_back();
-}
-
-void Line::pop_front() {
-    cords.pop_front();
+    Point save = Point(*it);
+    it = cords.erase(it);
+    if (!this->validate()) {        
+        cords.emplace(it, save);
+    }
+    return 1;
 }
 
 Point Line::front() {
+    if (cords.empty()) {
+        return Point(0, 0);
+    }
     return cords.front();
 }
 
 Point Line::back() {
+    if (cords.empty()) {
+        return Point(0, 0);
+    }
     return cords.back();
 }
 
-void Line::set_point(long unsigned int num, Point p) {
+bool Line::set_point(long unsigned int num, Point p) {
     if (num >= cords.size()) {
-        return;
+        return 0;
     }
     auto it = cords.begin();
     while (num--) {
         it++;
     }
     cords.emplace(it, p);
+    return 1;
 }
 
 Point Line::get_point(long unsigned int num) {
@@ -81,11 +115,6 @@ long double Line::perimeter() {
         last = *it;
     }
     return ans;
-}
-
-long double ClosedLine::perimeter() {
-    long double ans = Line::perimeter();    
-    return ans + this->front().vector_lenght(this->back());
 }
 
 Line Line::operator+(const Line& l) {
@@ -127,4 +156,17 @@ ostream& operator<<(ostream& os, const Line& l) {
         }
     }
     return os;
+}
+
+long double ClosedLine::perimeter() {
+    long double ans = Line::perimeter();    
+    return ans + this->front().vector_lenght(this->back());
+}
+
+bool Line::validate() {
+    return 1;
+}
+
+bool ClosedLine::validate() {
+    return 1;
 }

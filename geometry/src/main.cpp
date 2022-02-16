@@ -78,7 +78,13 @@ int main() {
     cout << *line_array[0] << endl << *line_array[1] << endl;
     cout << line_array[0]->perimeter() << " " << line_array[1]->perimeter() << endl;
 
-    
+    cout << "cline before deleting: " << *cline << endl;
+    cline->delete_point(3);
+    cout << "cline after deleting third point: " << *cline << endl;
+    cline->set_point(2, Point(1, 1));
+    cout << *cline << endl;
+
+
     // delete p1;
     // delete p2;
 }
