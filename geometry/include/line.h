@@ -21,6 +21,7 @@ class Line {
     Point front();
     Point back();
 
+    bool add_point(long unsigned int num, Point p);
     bool set_point(long unsigned int num, Point p);
     bool delete_point(long unsigned int num);
 
@@ -41,6 +42,7 @@ class Line {
     friend class ClosedLine;
 
    private:
+    _List_iterator<Point> find_iter(long unsigned int num);
     bool validate();
 };
 
