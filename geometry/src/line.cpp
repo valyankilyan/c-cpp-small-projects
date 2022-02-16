@@ -78,6 +78,7 @@ bool Line::set_point(long unsigned int num, Point p) {
         return 0;
     }
     *it = p;
+    return 1;
 }
 
 bool Line::delete_point(long unsigned int num) {
@@ -139,22 +140,22 @@ bool Line::delete_point(long unsigned int num) {
 //     this->push_back(p);
 // }
 
-// ostream& operator<<(ostream& os, const Line& l) {
-//     int d = l.cords.size();
-//     for (auto p: l.cords) {
-//         d--;
-//         os << "(";
-//         int i = 0;
-//         for (i = 0; i < p.get_dimensions() - 1; i++) {
-//             os << p[i] << ", ";
-//         }
-//         os << p[i] << ")";
-//         if (d) {
-//             os << " -> ";
-//         }
-//     }
-//     return os;
-// }
+ostream& operator<<(ostream& os, const Line& l) {
+    int d = l.cords.size();
+    for (auto p: l.cords) {
+        d--;
+        os << "(";
+        int i = 0;
+        for (i = 0; i < p.get_dimensions() - 1; i++) {
+            os << p[i] << ", ";
+        }
+        os << p[i] << ")";
+        if (d) {
+            os << " -> ";
+        }
+    }
+    return os;
+}
 
 // long double ClosedLine::perimeter() {
 //     long double ans = Line::perimeter();    

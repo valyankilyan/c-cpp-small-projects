@@ -42,48 +42,46 @@ int main() {
     l.push_back(p1);
     l.push_back(p2);
     l.push_back(p3);
-    cout << "line perimeter = " << l.perimeter() << endl;
-    cout << "line = " << l << endl;
 
-    // ClosedLine cl = l;
-    // cout << "cline perimeter = " << cl.perimeter() << endl;
-    // cout << "cline = " << cl << endl;
+    cout << "printtin line from previous points: " << l << endl;
 
-    Point* pp = new Point(1, 2);
-    cout << "pp from heap - " << *pp << endl;
-
-    cout << "trying to make closed line from line\n";
     Line* line = new Line();
-    ClosedLine* cline = new ClosedLine();
 
     int n = 5;
     for (int i = 0; i < n; i++) {
-        Point np = Point(i, i + i);
+        Point np = Point(i, i);
         line->push_back(np);
     }
 
-    for (int i = n; i > 0 ; i--) {
-        Point np = Point(i, i);
-        cline->push_back(np);
-    }
+    cout << endl <<  "line: " << *line << endl;
+    line->delete_point(3);
+    cout << "line after delete(3): " << *line << endl;
+    line->add_point(2, Point(2, 10));
+    cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
+    line->set_point(2, Point(10, 2));
+    cout << "line after settin 2nd point to 10, 2: " << *line << endl;
 
-    cout << "line = " << *line << endl;
-    cout << "cline = " << *cline << endl;
+    // for (int i = n; i > 0 ; i--) {
+    //     Point np = Point(i, i);
+    //     cline->push_back(np);
+    // }
 
-    cout << "trying to make an array\n";
+    // cout << "line = " << *line << endl;
+    // cout << "cline = " << *cline << endl;
 
-    Line** line_array = new Line*[2];
-    line_array[0] = line;
-    line_array[1] = cline;
-    cout << *line_array[0] << endl << *line_array[1] << endl;
-    cout << line_array[0]->perimeter() << " " << line_array[1]->perimeter() << endl;
+    // cout << "trying to make an array\n";
 
-    cout << "cline before deleting: " << *cline << endl;
-    cline->delete_point(3);
-    cout << "cline after deleting third point: " << *cline << endl;
-    cline->set_point(2, Point(1, 1));
-    cout << *cline << endl;
+    // Line** line_array = new Line*[2];
+    // line_array[0] = line;
+    // line_array[1] = cline;
+    // cout << *line_array[0] << endl << *line_array[1] << endl;
+    // cout << line_array[0]->perimeter() << " " << line_array[1]->perimeter() << endl;
 
+    // cout << "cline before deleting: " << *cline << endl;
+    // cline->delete_point(3);
+    // cout << "cline after deleting third point: " << *cline << endl;
+    // cline->set_point(2, Point(1, 1));
+    // cout << *cline << endl;
 
     // delete p1;
     // delete p2;
