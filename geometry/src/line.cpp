@@ -1,4 +1,5 @@
 #include "../include/line.h"
+
 #include <iostream>
 #include <limits>
 
@@ -11,8 +12,9 @@ Point Line::test() {
 Line::Line() {}
 
 Line::Line(const Line* l) {
-    cout << "first const\n" << endl;    
-    for (auto &p: l->cords) {
+    cout << "first const\n"
+         << endl;
+    for (auto& p : l->cords) {
         cords.push_back(p);
     }
 }
@@ -69,11 +71,11 @@ bool Line::pop_back() {
     return 1;
 }
 
-Point Line::front() {    
+Point& Line::front() {
     return cords.front();
 }
 
-Point Line::back() {    
+Point& Line::back() {
     return cords.back();
 }
 
@@ -105,10 +107,10 @@ bool Line::delete_point(long unsigned int num) {
 }
 
 Point Line::get_point(long unsigned int num) {
-    if (num >= cords.size()) {        
+    if (num >= cords.size()) {
         return *cords.rbegin();
     }
-    auto it = cords.begin();        
+    auto it = cords.begin();
     while (num--) {
         it++;
     }
@@ -156,7 +158,7 @@ Point Line::get_point(long unsigned int num) {
 
 ostream& operator<<(ostream& os, const Line& l) {
     int d = l.cords.size();
-    for (auto p: l.cords) {
+    for (auto p : l.cords) {
         d--;
         os << "(";
         int i = 0;
@@ -172,7 +174,7 @@ ostream& operator<<(ostream& os, const Line& l) {
 }
 
 // long double ClosedLine::perimeter() {
-//     long double ans = Line::perimeter();    
+//     long double ans = Line::perimeter();
 //     return ans + this->front().vector_lenght(this->back());
 // }
 

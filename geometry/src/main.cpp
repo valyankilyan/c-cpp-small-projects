@@ -75,7 +75,17 @@ int main() {
 
     delete line;
     line = new Line();
-    cout << "should be nan: " << line->front() << endl;
+    // cout << "should be nan: " << line->front() << endl;
+
+    cout << "trying to understand if list::front really returns read/write object " << new_line->front() << " " << new_line->front() << " " << new_line->front() << endl;
+    cout << "now we will try that on function that we wrote to the Line class ";
+    cout << new_line->back() << " ";
+    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
+    cout << new_line->back() << " ";
+    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
+    cout << new_line->back() << " ";
+    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
+    cout << endl;
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

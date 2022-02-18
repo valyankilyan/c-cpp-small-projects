@@ -10,22 +10,108 @@ class Line {
     list<Point> cords;
 
    public:
+    /**
+     * @brief Construct an empty Line object
+     */
     Line();
-    Line(const Line* l);
+    /**
+     * @brief Copying construct
+     *
+     * @param line src
+     */
+    Line(const Line* line);
     // Line operator=(const Line* l);
 
-    bool push_front(Point p);
-    bool push_back(Point p);
-    bool pop_front();
-    bool pop_back();
-    Point front();
-    Point back();
+    /**
+     * @brief add Point to the front of the line
+     *
+     * @param point
+     * @return true if validation wasn't failed
+     * @return false if validation failed
+     */
+    bool push_front(Point point);
 
-    bool add_point(long unsigned int num, Point p);
-    bool set_point(long unsigned int num, Point p);
+    /**
+     * @brief add Point to the end of the line
+     *
+     * @param point
+     * @return true if validation wasn't failed
+     * @return false if validation failed
+     */
+    bool push_back(Point point);
+
+    /**
+     * @brief removes front Point of the line
+     * 
+     * @return true if validation wasn't failed
+     * @return false if validation failed
+     */
+    bool pop_front();
+
+    /**
+     * @brief removes last Point of the line
+     * 
+     * @return true if validation wasn't failed
+     * @return false if validation failed
+     */
+    bool pop_back();
+
+    /**
+     * @brief *  Returns a read/write reference to the first Point
+     * of the Line.
+     * 
+     * @return Point& 
+     */
+    Point& front();
+
+    /**
+     * @brief *  Returns a read/write reference to the last Point
+     * of the Line.
+     * 
+     * @return Point& 
+     */
+    Point& back();
+
+
+    /**
+     * @brief Constructs Point before the num_th iterator
+     * 
+     * @param num - number of the Point
+     * @param point - src
+     * @return true if validated
+     * @return false if not validated
+     */
+    bool add_point(long unsigned int num, Point point);
+
+    /**
+     * @brief Changes num_th Point
+     * 
+     * @param num - number of the Point
+     * @param point - src
+     * @return true if validated
+     * @return false if not validated
+     */
+    bool set_point(long unsigned int num, Point point);
+
+    /**
+     * @brief deletes num_th Point of the Line
+     * 
+     * @param num - number of the point
+     * @return true if validated
+     * @return false if not validated
+     */
     bool delete_point(long unsigned int num);
 
+
+    /**
+     * @brief Get the num_th point object
+     * 
+     * @param num - number of the point
+     * @return Point 
+     */
     Point get_point(long unsigned int num);
+
+
     int size();
     long double perimeter();
 
