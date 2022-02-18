@@ -53,13 +53,18 @@ int main() {
         line->push_back(np);
     }
 
-    cout << endl <<  "line: " << *line << endl;
+    cout << endl
+         << "line: " << *line << endl;
     line->delete_point(3);
     cout << "line after delete(3): " << *line << endl;
     line->add_point(2, Point(2, 10));
     cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
     line->set_point(2, Point(10, 2));
     cout << "line after settin 2nd point to 10, 2: " << *line << endl;
+        
+    cout << *new_line << endl;
+    line->pop_back();
+    cout << *new_line << endl;
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

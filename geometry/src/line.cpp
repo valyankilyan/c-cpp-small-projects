@@ -1,15 +1,28 @@
 #include "../include/line.h"
+#include <iostream>
 
 using namespace std;
 
+Point Line::test() {
+    return cords.front();
+}
+
 Line::Line() {}
 
-Line::Line(const Line& l) : cords(this->cords = l.cords){}
-
-Line Line::operator=(const Line& l) {
-    cords = l.cords;
-    return *this;
+Line::Line(const Line* l) {
+    cout << "first const\n" << endl;
+    for (auto &p: l->cords) {
+        cords.push_back(p);
+    }
 }
+
+// Line Line::operator=(const Line* l) {
+//     cout << "second const\n" << endl;
+//     for (auto &p: l->cords) {
+//         cords.push_back(p);
+//     }
+//     return *this;
+// }
 
 bool Line::push_front(Point p) {
     cords.push_front(p);
@@ -30,6 +43,9 @@ bool Line::push_back(Point p) {
 }
 
 bool Line::pop_front() {
+    if (this->cords.size() == 0) {
+        return 0;
+    }
     Point save = this->front();
     cords.pop_front();
     if (!this->validate()) {
@@ -40,6 +56,9 @@ bool Line::pop_front() {
 }
 
 bool Line::pop_back() {
+    if (this->cords.size() == 0) {
+        return 0;
+    }
     Point save = cords.back();
     cords.pop_back();
     if (!this->validate()) {
@@ -49,17 +68,11 @@ bool Line::pop_back() {
     return 1;
 }
 
-Point Line::front() {
-    if (cords.empty()) {
-        return Point(0, 0);
-    }
+Point Line::front() {    
     return cords.front();
 }
 
-Point Line::back() {
-    if (cords.empty()) {
-        return Point(0, 0);
-    }
+Point Line::back() {    
     return cords.back();
 }
 
@@ -92,7 +105,7 @@ bool Line::delete_point(long unsigned int num) {
 
 // Point Line::get_point(long unsigned int num) {
 //     if (num >= cords.size()) {
-//         return Point();
+//         return Point(0, 0);
 //     }
 //     auto it = cords.begin();
 //     while (num--) {

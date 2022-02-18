@@ -11,8 +11,8 @@ class Line {
 
    public:
     Line();
-    Line(const Line& l);
-    Line operator=(const Line& l);
+    Line(const Line* l);
+    // Line operator=(const Line* l);
 
     bool push_front(Point p);
     bool push_back(Point p);
@@ -40,6 +40,8 @@ class Line {
 
     friend ostream& operator<<(ostream& os, const Line& p);
     friend class ClosedLine;
+
+    Point test();
 
    private:
     _List_iterator<Point> find_iter(long unsigned int num);
