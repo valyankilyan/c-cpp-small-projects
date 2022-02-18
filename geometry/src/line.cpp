@@ -1,5 +1,6 @@
 #include "../include/line.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ Point Line::test() {
 Line::Line() {}
 
 Line::Line(const Line* l) {
-    cout << "first const\n" << endl;
+    cout << "first const\n" << endl;    
     for (auto &p: l->cords) {
         cords.push_back(p);
     }
@@ -103,16 +104,16 @@ bool Line::delete_point(long unsigned int num) {
     return 1;
 }
 
-// Point Line::get_point(long unsigned int num) {
-//     if (num >= cords.size()) {
-//         return Point(0, 0);
-//     }
-//     auto it = cords.begin();
-//     while (num--) {
-//         it++;
-//     }
-//     return *it;
-// }
+Point Line::get_point(long unsigned int num) {
+    if (num >= cords.size()) {        
+        return *cords.rbegin();
+    }
+    auto it = cords.begin();        
+    while (num--) {
+        it++;
+    }
+    return *it;
+}
 
 // int Line::size() {
 //     return cords.size();

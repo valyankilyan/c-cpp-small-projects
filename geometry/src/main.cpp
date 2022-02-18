@@ -68,6 +68,15 @@ int main() {
     line->pop_back();
     cout << *new_line << endl;
 
+
+    cout << endl << "testing get_point func" << endl;
+    cout << "new_line->get_point(3) = " << new_line->get_point(3) << endl;
+    cout << "new_line->get_point(10) = " << new_line->get_point(10) << endl;
+
+    delete line;
+    line = new Line();
+    cout << "should be nan: " << line->front() << endl;
+
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);
     //     cline->push_back(np);
