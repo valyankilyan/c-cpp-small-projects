@@ -71,7 +71,7 @@ Point Point::operator-(const Point& b) {
     return temp;
 }
 
-Point Point::operator*(const int k) {
+Point Point::operator*(const long double k) {
     Point temp = Point();
     for (int i = 0; i < dimensions; i++) {
         temp.cords[i] = cords[i] * k;
@@ -79,7 +79,7 @@ Point Point::operator*(const int k) {
     return temp;
 }
 
-Point Point::operator/(const int k) {
+Point Point::operator/(const long double k) {
     Point temp = Point();
     for (int i = 0; i < dimensions; i++) {
         temp.cords[i] = cords[i] / k;
@@ -98,13 +98,13 @@ void Point::operator-=(const Point& b) {
         cords[i] -= b.cords[i];
     }
 }
-void Point::operator*=(const int k) {
+void Point::operator*=(const long double k) {
     for (int i = 0; i < dimensions; i++) {
         cords[i] *= k;
     }
 }
 
-void Point::operator/=(const int k) {
+void Point::operator/=(const long double k) {
     for (int i = 0; i < dimensions; i++) {
         cords[i] /= k;
     }
@@ -122,7 +122,7 @@ bool Point::operator!=(const Point& b) {
     return !(operator==(b));
 }
 
-long double Point::operator[](int num) {
+long double& Point::operator[](int num) {
     return cords[num];
 }
 

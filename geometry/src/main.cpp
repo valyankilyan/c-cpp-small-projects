@@ -7,7 +7,13 @@ using namespace std;
 int main() {
     Point p1 = Point(1, 2);
     Point p2 = Point(0, 0);
-    // cin >> p2;
+
+    cout << "read/write check \n";
+    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
+    p1[0]++;
+    p1[1]+= 10;
+    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
+    return 0;        
 
     cout << "p1 = " << p1 << endl;
     cout << "p2 = " << p2 << endl;

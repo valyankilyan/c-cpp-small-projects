@@ -23,7 +23,7 @@ class Line {
     // Line operator=(const Line* l);
 
     /**
-     * @brief add Point to the front of the line
+     * @brief Adds Point to the front of the line
      *
      * @param point
      * @return true if validation wasn't failed
@@ -41,7 +41,7 @@ class Line {
     bool push_back(Point point);
 
     /**
-     * @brief removes front Point of the line
+     * @brief Removes front Point of the line
      * 
      * @return true if validation wasn't failed
      * @return false if validation failed
@@ -49,7 +49,7 @@ class Line {
     bool pop_front();
 
     /**
-     * @brief removes last Point of the line
+     * @brief Removes last Point of the line
      * 
      * @return true if validation wasn't failed
      * @return false if validation failed
@@ -57,7 +57,7 @@ class Line {
     bool pop_back();
 
     /**
-     * @brief *  Returns a read/write reference to the first Point
+     * @brief  Returns a read/write reference to the first Point
      * of the Line.
      * 
      * @return Point& 
@@ -65,7 +65,7 @@ class Line {
     Point& front();
 
     /**
-     * @brief *  Returns a read/write reference to the last Point
+     * @brief  Returns a read/write reference to the last Point
      * of the Line.
      * 
      * @return Point& 
@@ -94,7 +94,7 @@ class Line {
     bool set_point(long unsigned int num, Point point);
 
     /**
-     * @brief deletes num_th Point of the Line
+     * @brief Deletes num_th Point of the Line
      * 
      * @param num - number of the point
      * @return true if validated
