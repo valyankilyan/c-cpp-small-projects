@@ -12,8 +12,7 @@ int main() {
     cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
     p1[0]++;
     p1[1]+= 10;
-    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
-    return 0;        
+    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;    
 
     cout << "p1 = " << p1 << endl;
     cout << "p2 = " << p2 << endl;
@@ -65,33 +64,30 @@ int main() {
     cout << "line after delete(3): " << *line << endl;
     line->add_point(2, Point(2, 10));
     cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
-    line->set_point(2, Point(10, 2));
-    cout << "line after settin 2nd point to 10, 2: " << *line << endl;
+    line->get_point(2) = Point(10, 2);
+    cout << "line after settin 2nd point to 10, 2: " << *line << endl << endl;
 
+    cout << "Concatination by operator check: \n";
+    Line l1, l2;
+    for (int i = 0; i < 4; i++) {
+        l1.push_back(Point(i, i));
+        l2.push_back(Point(-i, -i));
+    }
+    cout << l1 << " + " << l2 << " = \n" << l1 + l2 << endl << endl;
 
-    Line* new_line = new Line(line);
-    cout << *new_line << endl;
-    line->pop_back();
-    cout << *new_line << endl;
+    cout << "Point adds by operator check: \n";
+    cout << l1 << " + " << Point(1, 1) << " = " << l1 + Point(1, 1) << endl;
 
+    l1+= l2;
+    cout << "l1+= l2, l1 = " << l1 << endl;
 
-    cout << endl << "testing get_point func" << endl;
-    cout << "new_line->get_point(3) = " << new_line->get_point(3) << endl;
-    cout << "new_line->get_point(10) = " << new_line->get_point(10) << endl;
+    l2 += Point(1, 1);
+    cout << "l2+= Point(1, 1), l2 = " << l2 << endl << endl;
+    
+    cout << "operator== check: " << endl;
+    cout << "l1 == l1 = " << (l1 == l1) << "; l1 != l1 = " << (l1 != l1) << endl;
+    cout << "l1 == l2 = " << (l1 == l2) << "; l1 != l2 = " << (l1 != l2) << endl << endl;
 
-    delete line;
-    line = new Line();
-    // cout << "should be nan: " << line->front() << endl;
-
-    cout << "trying to understand if list::front really returns read/write object " << new_line->front() << " " << new_line->front() << " " << new_line->front() << endl;
-    cout << "now we will try that on function that we wrote to the Line class ";
-    cout << new_line->back() << " ";
-    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
-    cout << new_line->back() << " ";
-    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
-    cout << new_line->back() << " ";
-    new_line->back().set(new_line->back()[0] + 1, new_line->back()[1] + 1);
-    cout << endl;
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

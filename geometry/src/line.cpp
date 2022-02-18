@@ -88,15 +88,6 @@ bool Line::add_point(long unsigned int num, Point p) {
     return 1;
 }
 
-bool Line::set_point(long unsigned int num, Point p) {
-    auto it = this->find_iter(num);
-    if (it == cords.end()) {
-        return 0;
-    }
-    *it = p;
-    return 1;
-}
-
 bool Line::delete_point(long unsigned int num) {
     auto it = this->find_iter(num);
     if (it == cords.end()) {
@@ -106,7 +97,7 @@ bool Line::delete_point(long unsigned int num) {
     return 1;
 }
 
-Point Line::get_point(long unsigned int num) {
+Point& Line::get_point(long unsigned int num) {
     if (num >= cords.size()) {
         return *cords.rbegin();
     }
@@ -117,47 +108,64 @@ Point Line::get_point(long unsigned int num) {
     return *it;
 }
 
-// int Line::size() {
-//     return cords.size();
-// }
+int Line::size() {
+    return cords.size();
+}
 
-// long double Line::perimeter() {
-//     long double ans = 0;
-//     auto it = cords.begin();
-//     Point last = *it;
-//     while (++it != cords.end()) {
-//         ans += (*it).vector_lenght(last);
-//         last = *it;
-//     }
-//     return ans;
-// }
+long double Line::perimeter() {
+    long double ans = 0;
+    auto it = cords.begin();
+    Point last = *it;
+    while (++it != cords.end()) {
+        ans += (*it).vector_lenght(last);
+        last = *it;
+    }
+    return ans;
+}
 
-// Line Line::operator+(const Line& l) {
-//     Line temp = *this;
-//     for (auto p: l.cords) {
-//         temp.push_back(p);
-//     }
-//     return temp;
-// }
+Line Line::operator+(const Line& l) {
+    Line temp = *this;
+    for (auto p: l.cords) {
+        temp.push_back(p);
+    }
+    return temp;
+}
 
-// Line Line::operator+(const Point& p) {
-//     Line temp = *this;
-//     temp.push_back(p);
-//     return temp;
-// }
+Line Line::operator+(const Point& p) {
+    Line temp = *this;
+    temp.push_back(p);
+    return temp;
+}
 
-// void Line::operator+=(const Line& l) {
-//     for (auto p: l.cords) {
-//         this->push_back(p);
-//     }
-// }
+void Line::operator+=(const Line& l) {
+    for (auto p: l.cords) {
+        this->push_back(p);
+    }
+}
 
-// void Line::operator+=(const Point& p) {
-//     this->push_back(p);
-// }
+void Line::operator+=(const Point& p) {
+    this->push_back(p);
+}
+
+bool Line::operator==(const Line& line) {
+    bool ans = this->cords.size() == line.cords.size();
+    auto it1 = this->cords.begin();
+    auto it2 = line.cords.begin();
+    for (int i = 0; ans && it1 != this->cords.end(); i++) {
+        ans = ans && (*it1 == *it2);
+        it1++;
+        it2++;
+    }
+    return ans;
+}
+
+bool Line::operator!=(const Line& line) {
+    return !(Line::operator==(line));
+}
 
 ostream& operator<<(ostream& os, const Line& l) {
     int d = l.cords.size();
+    os << "[";
     for (auto p : l.cords) {
         d--;
         os << "(";
@@ -170,6 +178,7 @@ ostream& operator<<(ostream& os, const Line& l) {
             os << " -> ";
         }
     }
+    os << "]";
     return os;
 }
 

@@ -26,7 +26,7 @@ class Line {
      * @brief Adds Point to the front of the line
      *
      * @param point
-     * @return true if validation wasn't failed
+     * @return true if successed
      * @return false if validation failed
      */
     bool push_front(Point point);
@@ -35,7 +35,7 @@ class Line {
      * @brief add Point to the end of the line
      *
      * @param point
-     * @return true if validation wasn't failed
+     * @return true if successed
      * @return false if validation failed
      */
     bool push_back(Point point);
@@ -43,7 +43,7 @@ class Line {
     /**
      * @brief Removes front Point of the line
      * 
-     * @return true if validation wasn't failed
+     * @return true if successed
      * @return false if validation failed
      */
     bool pop_front();
@@ -51,7 +51,7 @@ class Line {
     /**
      * @brief Removes last Point of the line
      * 
-     * @return true if validation wasn't failed
+     * @return true if successed
      * @return false if validation failed
      */
     bool pop_back();
@@ -76,53 +76,93 @@ class Line {
     /**
      * @brief Constructs Point before the num_th iterator
      * 
-     * @param num - number of the Point
-     * @param point - src
-     * @return true if validated
+     * @param num number of the Point
+     * @param point src
+     * @return true if successed
      * @return false if not validated
      */
-    bool add_point(long unsigned int num, Point point);
-
-    /**
-     * @brief Changes num_th Point
-     * 
-     * @param num - number of the Point
-     * @param point - src
-     * @return true if validated
-     * @return false if not validated
-     */
-    bool set_point(long unsigned int num, Point point);
+    bool add_point(long unsigned int num, Point point);    
 
     /**
      * @brief Deletes num_th Point of the Line
      * 
      * @param num - number of the point
-     * @return true if validated
+     * @return true if successed
      * @return false if not validated
      */
     bool delete_point(long unsigned int num);
 
 
     /**
-     * @brief Get the num_th point object
+     * @brief Returns a read/write reference to the num_th Point
      * 
      * @param num - number of the point
      * @return Point 
      */
-    Point get_point(long unsigned int num);
+    Point& get_point(long unsigned int num);
 
-
+    /**
+     * @brief Returns count of the Points in line
+     * 
+     * @return int size
+     */
     int size();
+
+    /**
+     * @brief Calculates the length of the figure
+     * 
+     * @return long double length
+     */
     long double perimeter();
 
-    Line operator+(const Line& b);
-    Line operator+(const Point& p);
+    /**
+     * @brief Concatinates two lines
+     * 
+     * @param line 
+     * @return Line result
+     */
+    Line operator+(const Line& line);
 
-    void operator+=(const Line& b);
-    void operator+=(const Point& p);
+    /**
+     * @brief Adds point at the end of the line
+     * 
+     * @param point 
+     * @return Line result
+     */
+    Line operator+(const Point& point);
 
-    bool operator==(const Line& b);
-    bool operator!=(const Line& b);
+
+    /**
+     * @brief Concatinates two lines
+     * 
+     * @param line 
+     */
+    void operator+=(const Line& line);
+
+    /**
+     * @brief Adds point at the end of the line
+     * 
+     * @param point 
+     */
+    void operator+=(const Point& point);
+
+    /**
+     * @brief Checks whether all points are equal
+     * 
+     * @param line 
+     * @return true 
+     * @return false 
+     */
+    bool operator==(const Line& line);
+
+    /**
+     * @brief Checks whether all points aren't equal
+     * 
+     * @param line 
+     * @return true 
+     * @return false 
+     */
+    bool operator!=(const Line& line);    
 
     friend ostream& operator<<(ostream& os, const Line& p);
     friend class ClosedLine;
@@ -136,8 +176,8 @@ class Line {
 
 class ClosedLine : public Line {
    public:
-    bool operator+=(const Line& b);
-    bool operator+=(const Point& p);
+    bool operator+=(const Line& line);
+    bool operator+=(const Point& point);
 
     long double perimeter();
 
