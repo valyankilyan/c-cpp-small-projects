@@ -61,7 +61,9 @@ int main() {
     cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
     line->set_point(2, Point(10, 2));
     cout << "line after settin 2nd point to 10, 2: " << *line << endl;
-        
+
+
+    Line* new_line = new Line(line);
     cout << *new_line << endl;
     line->pop_back();
     cout << *new_line << endl;
