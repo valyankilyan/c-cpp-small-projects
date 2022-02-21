@@ -2,8 +2,10 @@
 #define LINE_H
 
 #include <list>
-
 #include "point.h"
+
+#define  lit _List_iterator<Point>
+
 using namespace std;
 
 class Line {
@@ -183,9 +185,9 @@ class Line {
      * @brief Returns the num_th iterator of the line
      *
      * @param num
-     * @return _List_iterator<Point>
+     * @return lit
      */
-    _List_iterator<Point> find_iter(size_t num);
+    lit find_iter(size_t num);
 
     /**
      * @brief Returns coefficients of the line equation for vector
@@ -204,7 +206,7 @@ class Line {
      * @return true 
      * @return false 
      */
-    bool same_straight_check(_List_iterator<Point>* a);
+    bool same_straight_check(lit* a);
 
     /**
      * @brief Returns true if a[2] locates between a[0] and a[1]
@@ -213,7 +215,7 @@ class Line {
      * @return true 
      * @return false 
      */
-    bool is_between(_List_iterator<Point>* a);
+    bool is_between(lit* a);
 
     /**
      * @brief Validation

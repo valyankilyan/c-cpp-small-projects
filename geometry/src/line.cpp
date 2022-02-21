@@ -184,7 +184,7 @@ ostream& operator<<(ostream& os, const Line& l) {
 //     return ans + this->front().vector_lenght(this->back());
 // }
 
-_List_iterator<Point> Line::find_iter(size_t num) {
+lit Line::find_iter(size_t num) {
     if (num >= cords.size()) {
         return cords.end();
     }
@@ -200,13 +200,13 @@ void Line::find_coefficients(long double *k, long double *b, Point* f, Point* s)
     *b = (*f)[0] - *k * (*f)[1];
 }
 
-bool Line::same_straight_check(_List_iterator<Point>* a) {
+bool Line::same_straight_check(lit* a) {
     long double k, b;
     find_coefficients(&k, &b, &(*(a[0])), &(*(a[1])));
     return (*(a[2]))[0] == (k * (*(a[2]))[1] + b);
 }
 
-bool Line::is_between(_List_iterator<Point>* a) {
+bool Line::is_between(lit* a) {
     return (*(a[2]))[0] > min((*(a[0]))[0], (*(a[1]))[0]) &&
            (*(a[2]))[0] < max((*(a[0]))[0], (*(a[1]))[0]);
 }
@@ -215,7 +215,7 @@ bool Line::validate() {
     if (size() < 3) {
         return true;
     }
-    _List_iterator<Point> a[3];
+    lit a[3];
     for (int i = 0; i < 3; i++) {
         a[i] = find_iter(i);
     }

@@ -4,7 +4,7 @@
 #include "line.h"
 
 class Polygon : public ClosedLine {
-   private:
+   protected:
     bool validate();
 };
 
