@@ -81,7 +81,7 @@ class Line {
      * @return true if successed
      * @return false if not validated
      */
-    bool add_point(long unsigned int num, Point point);    
+    bool add_point(size_t num, Point point);    
 
     /**
      * @brief Deletes num_th Point of the Line
@@ -90,7 +90,7 @@ class Line {
      * @return true if successed
      * @return false if not validated
      */
-    bool delete_point(long unsigned int num);
+    bool delete_point(size_t num);
 
 
     /**
@@ -99,7 +99,7 @@ class Line {
      * @param num - number of the point
      * @return Point 
      */
-    Point& get_point(long unsigned int num);
+    Point& get_point(size_t num);
 
     /**
      * @brief Return a read/write reference to the num_th Point
@@ -107,7 +107,7 @@ class Line {
      * @param num 
      * @return Point& 
      */
-    Point& operator[](long unsigned int num);
+    Point& operator[](size_t num);
 
 
     /**
@@ -179,7 +179,7 @@ class Line {
     Point test();
 
    private:
-    _List_iterator<Point> find_iter(long unsigned int num);
+    _List_iterator<Point> find_iter(size_t num);
     bool validate();
 };
 

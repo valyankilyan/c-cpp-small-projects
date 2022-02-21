@@ -79,7 +79,7 @@ Point& Line::back() {
     return cords.back();
 }
 
-bool Line::add_point(long unsigned int num, Point p) {
+bool Line::add_point(size_t num, Point p) {
     auto it = this->find_iter(num);
     if (it == cords.end()) {
         return 0;
@@ -88,7 +88,7 @@ bool Line::add_point(long unsigned int num, Point p) {
     return 1;
 }
 
-bool Line::delete_point(long unsigned int num) {
+bool Line::delete_point(size_t num) {
     auto it = this->find_iter(num);
     if (it == cords.end()) {
         return 0;
@@ -97,7 +97,7 @@ bool Line::delete_point(long unsigned int num) {
     return 1;
 }
 
-Point& Line::get_point(long unsigned int num) {
+Point& Line::get_point(size_t num) {
     if (num >= cords.size()) {
         return *cords.rbegin();
     }
@@ -105,7 +105,7 @@ Point& Line::get_point(long unsigned int num) {
     return *it;
 }
 
-Point& Line::operator[](long unsigned int num) {
+Point& Line::operator[](size_t num) {
     return Line::get_point(num);
 }
 
@@ -188,7 +188,7 @@ ostream& operator<<(ostream& os, const Line& l) {
 //     return ans + this->front().vector_lenght(this->back());
 // }
 
-_List_iterator<Point> Line::find_iter(long unsigned int num) {
+_List_iterator<Point> Line::find_iter(size_t num) {
     if (num >= cords.size()) {
         return cords.end();
     }

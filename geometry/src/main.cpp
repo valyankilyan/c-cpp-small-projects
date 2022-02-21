@@ -65,7 +65,9 @@ int main() {
     line->add_point(2, Point(2, 10));
     cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
     line->get_point(2) = Point(10, 2);
-    cout << "line after settin 2nd point to 10, 2: " << *line << endl << endl;
+    cout << "line after settin 2nd point to 10, 2: " << *line << endl;    
+    (*line)[2] = Point(11, 3);
+    cout << "line after settin 2nd point to 11, 3: " << *line << endl << endl;
 
     cout << "Concatination by operator check: \n";
     Line l1, l2;
