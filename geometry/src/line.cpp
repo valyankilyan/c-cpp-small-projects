@@ -101,11 +101,12 @@ Point& Line::get_point(long unsigned int num) {
     if (num >= cords.size()) {
         return *cords.rbegin();
     }
-    auto it = cords.begin();
-    while (num--) {
-        it++;
-    }
+    auto it = Line::find_iter(num);
     return *it;
+}
+
+Point& Line::operator[](long unsigned int num) {
+    return Line::get_point(num);
 }
 
 int Line::size() {

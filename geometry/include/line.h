@@ -102,6 +102,15 @@ class Line {
     Point& get_point(long unsigned int num);
 
     /**
+     * @brief Return a read/write reference to the num_th Point
+     * 
+     * @param num 
+     * @return Point& 
+     */
+    Point& operator[](long unsigned int num);
+
+
+    /**
      * @brief Returns count of the Points in line
      * 
      * @return int size
