@@ -178,7 +178,7 @@ class Line {
      */
     friend ostream& operator<<(ostream& os, const Line& p);
 
-   private:
+   protected:
     /**
      * @brief Returns the num_th iterator of the line
      *
@@ -200,10 +200,12 @@ class Line {
 
 class ClosedLine : public Line {
    public:
+    /**
+     * @brief Returns perimeter of the closed line
+     * 
+     * @return long double 
+     */
     long double perimeter();
-
-   private:
-    bool validate();
 };
 
 #endif
