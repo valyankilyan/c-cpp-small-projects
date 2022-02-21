@@ -197,8 +197,22 @@ class Line {
      */
     void find_coefficients(long double *k, long double *b, Point* f, Point* s);
 
+    /**
+     * @brief Returns true if a[0], a[1] and a[2] in the same straight line
+     * 
+     * @param a array of Points with a size of 3
+     * @return true 
+     * @return false 
+     */
     bool same_straight_check(_List_iterator<Point>* a);
 
+    /**
+     * @brief Returns true if a[2] locates between a[0] and a[1]
+     * 
+     * @param a array of pointw with a size of 3
+     * @return true 
+     * @return false 
+     */
     bool is_between(_List_iterator<Point>* a);
 
     /**
