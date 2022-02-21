@@ -90,6 +90,14 @@ int main() {
     cout << "l1 == l1 = " << (l1 == l1) << "; l1 != l1 = " << (l1 != l1) << endl;
     cout << "l1 == l2 = " << (l1 == l2) << "; l1 != l2 = " << (l1 != l2) << endl << endl;
 
+    Line val_check;
+    val_check.push_back(Point(0, 0));
+    val_check.push_back(Point(2, 2));
+
+    cout << "validation check: push_back(1, 1) = " << val_check.push_back(Point(1, 1)) << endl;
+    cout << "validation check: push_back(1, 2) = " << val_check.push_back(Point(1, 2)) << endl;
+    
+
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

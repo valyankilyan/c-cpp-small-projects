@@ -5,10 +5,6 @@
 
 using namespace std;
 
-Point Line::test() {
-    return cords.front();
-}
-
 Line::Line() {}
 
 Line::Line(const Line* l) {
@@ -199,10 +195,33 @@ _List_iterator<Point> Line::find_iter(size_t num) {
     return it;
 }
 
-bool Line::validate() {
-    return 1;
+bool Line::one_straight_check(_List_iterator<Point> a[]) {
+    long double k, b;
+    k = ((*(a[0]))[0] - (*(a[1]))[0]) / ((*(a[0]))[1] - (*(a[1]))[1]);
+    b = (*(a[0]))[0] - k * (*(a[0]))[1];
+    return (*(a[2]))[0] == (k * (*(a[2]))[1] + b);
 }
 
-bool ClosedLine::validate() {
-    return 1;
+bool Line::validate() {
+    if (size() < 3) {
+        return true;
+    }
+    _List_iterator<Point> a[3];
+    for (int i = 0; i < 3; i++) {
+        a[i] = find_iter(i);
+    }
+
+    bool ans = 1;
+    while (ans && a[2] != cords.end()) {
+        ans = ans && !one_straight_check(a);
+        for (int i = 0; i < 3; i++) {
+            a[i]++;
+        }
+    }
+    if (ans) {
+        a[2] = cords.begin();
+        ans = ans && !one_straight_check(a);
+    }
+    return ans;
 }
+
