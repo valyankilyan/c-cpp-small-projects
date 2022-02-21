@@ -9,6 +9,10 @@
 using namespace std;
 
 class Line {
+    /**
+     * @brief Points of line
+     * 
+     */
     list<Point> cords;
 
    public:

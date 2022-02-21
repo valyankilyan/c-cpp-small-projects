@@ -6,7 +6,16 @@
 using namespace std;
 
 class Point {
+    /**
+     * @brief Number of dimensions. Made in case of multidimensional geometry
+     *
+     */
     int dimensions;
+
+    /**
+     * @brief Euclidean coordinates
+     *
+     */
     long double* cords;
 
    public:
@@ -162,19 +171,19 @@ class Point {
 
     /**
      * @brief Operator for out stream
-     * 
+     *
      * @param os stream
      * @param point
-     * @return ostream& 
+     * @return ostream&
      */
     friend ostream& operator<<(ostream& os, const Point& point);
 
     /**
      * @brief Operator for cin stream
-     * 
-     * @param is 
+     *
+     * @param is
      * @param point
-     * @return istream& 
+     * @return istream&
      */
     friend istream& operator>>(istream& is, Point& point);
 };
