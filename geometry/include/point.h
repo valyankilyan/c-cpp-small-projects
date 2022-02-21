@@ -167,7 +167,7 @@ class Point {
      * @param num
      * @return long double
      */
-    long double& operator[](int num);
+    long double& operator[](int num) const;
 
     /**
      * @brief Operator for out stream

@@ -201,7 +201,7 @@ class Line {
      * @param a const first Point
      * @param b const second Point
      */
-    void find_coefficients(long double *k, long double *b, Point* f, Point* s);
+    bool find_coefficients(long double *k, long double *b, Point* f, Point* s);
 
     /**
      * @brief Returns true if a[0], a[1] and a[2] in the same straight line
@@ -213,16 +213,18 @@ class Line {
     bool same_straight_check(lit* a);
 
     /**
-     * @brief Returns true if a[2] locates between a[0] and a[1]
+     * @brief Returns true if b is between a1 and a2
      * 
-     * @param a array of pointw with a size of 3
+     * @param a1 
+     * @param a2 
+     * @param b 
      * @return true 
      * @return false 
      */
-    bool is_between(lit* a);
+    bool is_between(const Point *a1, const Point *a2, const Point *b);
 
     /**
-     * @brief Validation
+     * @brief Returns true if validation passed
      *
      * @return true
      * @return false

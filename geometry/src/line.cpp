@@ -195,20 +195,26 @@ lit Line::find_iter(size_t num) {
     return it;
 }
 
-void Line::find_coefficients(long double *k, long double *b, Point* f, Point* s) {
+bool Line::find_coefficients(long double *k, long double *b, Point* f, Point* s) {
+    if (*f == *s) {
+        return 0;
+    }
     *k = ((*f)[0] - (*s)[0]) / ((*f)[1] - (*s)[1]);
     *b = (*f)[0] - *k * (*f)[1];
+    return 1;
 }
 
 bool Line::same_straight_check(lit* a) {
     long double k, b;
-    find_coefficients(&k, &b, &(*(a[0])), &(*(a[1])));
+    if (!find_coefficients(&k, &b, &(*(a[0])), &(*(a[1])))) {
+        return 1;
+    }
     return (*(a[2]))[0] == (k * (*(a[2]))[1] + b);
 }
 
-bool Line::is_between(lit* a) {
-    return (*(a[2]))[0] > min((*(a[0]))[0], (*(a[1]))[0]) &&
-           (*(a[2]))[0] < max((*(a[0]))[0], (*(a[1]))[0]);
+bool Line::is_between(const Point *a1, const Point *a2, const Point *b) {
+    return (*b)[0] > min((*a1)[0], (*a2)[0]) &&
+           (*b)[0] < max((*a1)[0], (*a2)[0]);
 }
 
 bool Line::validate() {

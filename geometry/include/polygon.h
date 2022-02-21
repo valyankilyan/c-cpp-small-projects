@@ -6,7 +6,8 @@
 class Polygon : public ClosedLine {
    protected:
    /**
-    * @brief Finds intersection coordinates
+    * @brief Returns true if segments intersects 
+    * and puts Point of intersection into ans
     * 
     * @param a first line segment
     * @param b second line segments
@@ -14,20 +15,10 @@ class Polygon : public ClosedLine {
     * @return true 
     * @return false 
     */
-    bool find_intersection(lit *a, lit *b, Point* ans);
+    bool find_intersection(const lit *a, const lit *b, Point* ans);
 
     /**
-     * @brief Returns true if segments intersect
-     * 
-     * @param a first line segment
-     * @param b second line segment
-     * @return true 
-     * @return false 
-     */
-    bool intersect(lit *a, lit *b);
-
-    /**
-     * @brief validates polygon
+     * @brief Returns true if validation passed
      *
      * @return true
      * @return false

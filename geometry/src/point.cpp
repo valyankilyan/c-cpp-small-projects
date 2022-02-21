@@ -122,7 +122,7 @@ bool Point::operator!=(const Point& b) {
     return !(operator==(b));
 }
 
-long double& Point::operator[](int num) {
+long double& Point::operator[](int num) const {
     return cords[num];
 }
 
