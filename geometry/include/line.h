@@ -187,7 +187,19 @@ class Line {
      */
     _List_iterator<Point> find_iter(size_t num);
 
-    bool one_straight_check(_List_iterator<Point>* a);
+    /**
+     * @brief Returns coefficients of the line equation for vector
+     * 
+     * @param k first coefficient
+     * @param b second coefficient
+     * @param a const first Point
+     * @param b const second Point
+     */
+    void find_coefficients(long double *k, long double *b, Point* f, Point* s);
+
+    bool same_straight_check(_List_iterator<Point>* a);
+
+    bool is_between(_List_iterator<Point>* a);
 
     /**
      * @brief Validation

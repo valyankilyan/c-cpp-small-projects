@@ -122,7 +122,7 @@ long double Line::perimeter() {
 
 Line Line::operator+(const Line& l) {
     Line temp = *this;
-    for (auto p: l.cords) {
+    for (auto p : l.cords) {
         temp.push_back(p);
     }
     return temp;
@@ -135,7 +135,7 @@ Line Line::operator+(const Point& p) {
 }
 
 void Line::operator+=(const Line& l) {
-    for (auto p: l.cords) {
+    for (auto p : l.cords) {
         this->push_back(p);
     }
 }
@@ -195,11 +195,20 @@ _List_iterator<Point> Line::find_iter(size_t num) {
     return it;
 }
 
-bool Line::one_straight_check(_List_iterator<Point> a[]) {
+void Line::find_coefficients(long double *k, long double *b, Point* f, Point* s) {
+    *k = ((*f)[0] - (*s)[0]) / ((*f)[1] - (*s)[1]);
+    *b = (*f)[0] - *k * (*f)[1];
+}
+
+bool Line::same_straight_check(_List_iterator<Point>* a) {
     long double k, b;
-    k = ((*(a[0]))[0] - (*(a[1]))[0]) / ((*(a[0]))[1] - (*(a[1]))[1]);
-    b = (*(a[0]))[0] - k * (*(a[0]))[1];
+    find_coefficients(&k, &b, &(*(a[0])), &(*(a[1])));
     return (*(a[2]))[0] == (k * (*(a[2]))[1] + b);
+}
+
+bool Line::is_between(_List_iterator<Point>* a) {
+    return (*(a[2]))[0] > min((*(a[0]))[0], (*(a[1]))[0]) &&
+           (*(a[2]))[0] < max((*(a[0]))[0], (*(a[1]))[0]);
 }
 
 bool Line::validate() {
@@ -213,15 +222,14 @@ bool Line::validate() {
 
     bool ans = 1;
     while (ans && a[2] != cords.end()) {
-        ans = ans && !one_straight_check(a);
+        ans = ans && !same_straight_check(a);
         for (int i = 0; i < 3; i++) {
             a[i]++;
         }
     }
     if (ans) {
         a[2] = cords.begin();
-        ans = ans && !one_straight_check(a);
+        ans = ans && !same_straight_check(a);
     }
     return ans;
 }
-
