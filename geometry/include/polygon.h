@@ -7,6 +7,11 @@ class Polygon : public ClosedLine {
    public:
     using ClosedLine::ClosedLine;
 
+    /**
+     * @brief Returns area of the figure
+     * 
+     * @return long double 
+     */
     long double area();
 
    protected:
@@ -28,7 +33,7 @@ class Polygon : public ClosedLine {
      * @return true
      * @return false
      */
-    bool validate();
+    virtual bool validate() override;
 };
 
 #endif

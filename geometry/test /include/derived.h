@@ -4,9 +4,10 @@
 #include "base.h"
 
 class Derived : public Base {
-   protected:
+   public:
     using Base::Base;
 
+   protected:
     virtual void name() override;
 };
 

@@ -15,6 +15,9 @@ class ClosedLine : public Line {
     long double perimeter();
 
     bool is_done();
+
+   protected:
+    virtual bool validate() override;
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "../include/polygon.h"
+#include <iostream>
 
 long double Polygon::area() {
     lit f = find_iter(0), s = find_iter(1);
@@ -42,7 +43,8 @@ bool Polygon::find_intersection(const lit *a, const lit *b, Point *ans = NULL) {
 }
 
 bool Polygon::validate() {    
-    if (!Line::validate()) {
+    cout << "Polygon validation\n";
+    if (!ClosedLine::validate()) {
         return 0;
     }
 

@@ -8,10 +8,12 @@ using namespace std;
 Line::Line() {}
 
 Line::Line(const Line* l) {
-    cout << "first const\n"
-         << endl;
     for (auto& p : l->cords) {
         cords.push_back(p);
+        if (!validate()) {
+            cords.pop_back();
+            break;
+        }
     }
 }
 
@@ -217,6 +219,7 @@ bool Line::is_done() {
 }
 
 bool Line::validate() {
+    cout << "Line validation" << endl;
     if (size() < 3) {
         return true;
     }

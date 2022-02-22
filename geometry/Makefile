@@ -1,14 +1,15 @@
 CC = g++
 FLAGS = -Wextra -Wall -g -c
 DIR = src
-MODULES = point.o line.o closedline.o polygon.o main.o
+MODULES = point.o line.o closedline.o polygon.o \
+triangle.o main.o
 
 all: geometry clean
 
 geometry: $(MODULES)
 	$(CC) $(MODULES) -o geometry
 
-main.o: point.o
+main.o:
 	$(CC) $(FLAGS) $(DIR)/main.cpp
 
 point.o:
@@ -22,6 +23,9 @@ closedline.o:
 
 polygon.o:
 		$(CC) $(FLAGS) $(DIR)/polygon.cpp
+
+triangle.o:
+		$(CC) $(FLAGS) $(DIR)/triangle.cpp
 
 clean:
 	rm -f $(MODULES)

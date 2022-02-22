@@ -3,6 +3,7 @@
 #include "../include/line.h"
 #include "../include/point.h"
 #include "../include/polygon.h"
+#include "../include/triangle.h"
 using namespace std;
 
 int main() {
@@ -117,12 +118,23 @@ int main() {
     cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl
          << endl;
 
-    Polygon triangle;
-    triangle.push_back(Point(-1, 3));
-    triangle.push_back(Point(-2, -2));
-    triangle.push_back(Point(4, -1));
-    cout << "area of polygon " << triangle << " = " << triangle.area() << endl
+    Polygon tr;
+    tr.push_back(Point(-1, 3));
+    tr.push_back(Point(-2, -2));
+    tr.push_back(Point(4, -1));
+    cout << "area of polygon " << tr << " = " << tr.area() << endl
          << endl;
+
+    Triangle triangle(&l1);
+    cout << "triangle from line " << l1 << endl;
+    cout << triangle << endl << endl;
+
+     ClosedLine clt; 
+     clt.push_back(Point(0, 0));
+     Polygon pt;
+     pt.push_back(Point(0, 0));
+     Triangle tt;
+     tt.push_back(Point(0, 0));
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

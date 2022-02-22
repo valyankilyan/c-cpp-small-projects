@@ -12,7 +12,7 @@ using namespace std;
 class Line {
    public:
     /**
-     * @brief Construct an empty Line object
+     * @brief Construct an empty object
      */
     Line();
     /**
@@ -123,7 +123,7 @@ class Line {
     long double perimeter();
 
     /**
-     * @brief Returns true if Line is done
+     * @brief Returns true if Figure is done
      * 
      * @return true 
      * @return false 
@@ -232,7 +232,7 @@ class Line {
      * @return true
      * @return false
      */
-    bool validate();
+    virtual bool validate();
 
     /**
      * @brief printing validation error in stderr
