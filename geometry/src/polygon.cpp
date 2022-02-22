@@ -41,12 +41,7 @@ bool Polygon::find_intersection(const lit *a, const lit *b, Point *ans = NULL) {
     return out;
 }
 
-// bool Polygon::intersect(const lit *a, const lit *b) {
-//     Point intersection;
-//     find_intersection(a, b, &intersection);
-// }
-
-bool Polygon::validate() {
+bool Polygon::validate() {    
     if (!Line::validate()) {
         return 0;
     }

@@ -11,8 +11,10 @@ class ClosedLine : public Line {
      *
      * @return long double
      */
-    
+
     long double perimeter();
+
+    bool is_done();
 };
 
 #endif

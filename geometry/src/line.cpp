@@ -212,6 +212,10 @@ bool Line::is_between(const Point *a1, const Point *a2, const Point *b) {
            (*b)[0] < max((*a1)[0], (*a2)[0]);
 }
 
+bool Line::is_done() {
+    return size() > 1;
+}
+
 bool Line::validate() {
     if (size() < 3) {
         return true;

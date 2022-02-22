@@ -123,6 +123,14 @@ class Line {
     long double perimeter();
 
     /**
+     * @brief Returns true if Line is done
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool is_done();
+
+    /**
      * @brief Concatinates two lines
      *
      * @param line
