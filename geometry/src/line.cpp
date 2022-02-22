@@ -233,8 +233,10 @@ bool Line::validate() {
         ans = ans && !same_straight_check(a);
     }
 
-    if (!ans) {
-        cerr << " {Validation hasn't passed} ";
-    }
+    if (!ans) validation_error("line");
     return ans;
+}
+
+void Line::validation_error(string location) {
+    cerr << " {Validation error in " << location << "} ";
 }

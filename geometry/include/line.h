@@ -231,18 +231,13 @@ class Line {
      * @return false
      */
     bool validate();
-};
 
-class ClosedLine : public Line {
-   public:
-    using Line::Line;
     /**
-     * @brief Returns perimeter of the closed line
-     *
-     * @return long double
+     * @brief printing validation error in stderr
+     * 
+     * @param location validation class in wich error was found
      */
-    
-    long double perimeter();
+    void validation_error(string location);
 };
 
 #endif
