@@ -2,16 +2,17 @@
 #define LINE_H
 
 #include <list>
+
 #include "point.h"
 
-#define  lit _List_iterator<Point>
+#define lit _List_iterator<Point>
 
 using namespace std;
 
 class Line {
     /**
      * @brief Points of line
-     * 
+     *
      */
     list<Point> cords;
 
@@ -195,33 +196,33 @@ class Line {
 
     /**
      * @brief Returns coefficients of the line equation for vector
-     * 
+     *
      * @param k first coefficient
      * @param b second coefficient
      * @param a const first Point
      * @param b const second Point
      */
-    bool find_coefficients(long double *k, long double *b, Point* f, Point* s);
+    bool find_coefficients(long double* k, long double* b, Point* f, Point* s);
 
     /**
      * @brief Returns true if a[0], a[1] and a[2] in the same straight line
-     * 
+     *
      * @param a array of Points with a size of 3
-     * @return true 
-     * @return false 
+     * @return true
+     * @return false
      */
     bool same_straight_check(lit* a);
 
     /**
      * @brief Returns true if b is between a1 and a2
-     * 
-     * @param a1 
-     * @param a2 
-     * @param b 
-     * @return true 
-     * @return false 
+     *
+     * @param a1
+     * @param a2
+     * @param b
+     * @return true
+     * @return false
      */
-    bool is_between(const Point *a1, const Point *a2, const Point *b);
+    bool is_between(const Point* a1, const Point* a2, const Point* b);
 
     /**
      * @brief Returns true if validation passed
@@ -234,13 +235,13 @@ class Line {
 
 class ClosedLine : public Line {
    public:
-
     using Line::Line;
     /**
      * @brief Returns perimeter of the closed line
-     * 
-     * @return long double 
+     *
+     * @return long double
      */
+    
     long double perimeter();
 };
 

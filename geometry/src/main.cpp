@@ -9,11 +9,11 @@ int main() {
     Point p1 = Point(1, 2);
     Point p2 = Point(0, 0);
 
-    cout << "read/write check \n";
+    cout << "read/write Point check \n";
     cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
     p1[0]++;
-    p1[1]+= 10;
-    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;    
+    p1[1] += 10;
+    cout << "p1[0] = " << p1[0] << ", p1[1] = " << p1[1] << endl;
 
     cout << "p1 = " << p1 << endl;
     cout << "p2 = " << p2 << endl;
@@ -44,18 +44,24 @@ int main() {
 
     cout << "p1 -> p2 = " << p1.vector_lenght(p2) << endl;
 
+    p3 = Point(7, 8);
     Line l = Line();
     l.push_back(p1);
     l.push_back(p2);
     l.push_back(p3);
 
-    cout << "printtin line from previous points: " << l << endl;
+    cout << "printtin line from previous points: ";
+    cout << p1 << " " << p2 << " " << p3 << endl;
+    cout << l << endl;
 
     Line* line = new Line();
 
     int n = 5;
-    for (int i = 0; i < n; i++) {
-        Point np = Point(i, i);
+    int f = 1, s = 3;
+    while (n--) {
+        f+= s;
+        s+= f;
+        Point np = Point(f, s);
         line->push_back(np);
     }
 
@@ -66,30 +72,35 @@ int main() {
     line->add_point(2, Point(2, 10));
     cout << "line after addition point 2, 10 on 2nd place: " << *line << endl;
     line->get_point(2) = Point(10, 2);
-    cout << "line after settin 2nd point to 10, 2: " << *line << endl;    
+    cout << "line after settin 2nd point to 10, 2: " << *line << endl;
     (*line)[2] = Point(11, 3);
-    cout << "line after settin 2nd point to 11, 3: " << *line << endl << endl;
+    cout << "line after settin 2nd point to 11, 3: " << *line << endl
+         << endl;
 
     cout << "Concatination by operator check: \n";
     Line l1, l2;
     for (int i = 0; i < 4; i++) {
-        l1.push_back(Point(i, i));
-        l2.push_back(Point(-i, -i));
+        l1.push_back(Point(i + i % 2, i + !(i % 2)));
+        l2.push_back(Point(-i + i % 2, -i + !(i % 2)));
     }
-    cout << l1 << " + " << l2 << " = \n" << l1 + l2 << endl << endl;
+    cout << l1 << " + " << l2 << " = \n"
+         << l1 + l2 << endl
+         << endl;
 
     cout << "Point adds by operator check: \n";
     cout << l1 << " + " << Point(1, 1) << " = " << l1 + Point(1, 1) << endl;
 
-    l1+= l2;
+    l1 += l2;
     cout << "l1+= l2, l1 = " << l1 << endl;
 
     l2 += Point(1, 1);
-    cout << "l2+= Point(1, 1), l2 = " << l2 << endl << endl;
-    
+    cout << "l2+= Point(1, 1), l2 = " << l2 << endl
+         << endl;
+
     cout << "operator== check: " << endl;
     cout << "l1 == l1 = " << (l1 == l1) << "; l1 != l1 = " << (l1 != l1) << endl;
-    cout << "l1 == l2 = " << (l1 == l2) << "; l1 != l2 = " << (l1 != l2) << endl << endl;
+    cout << "l1 == l2 = " << (l1 == l2) << "; l1 != l2 = " << (l1 != l2) << endl
+         << endl;
 
     Line val_check;
     val_check.push_back(Point(0, 0));
@@ -97,14 +108,14 @@ int main() {
 
     cout << "validation check: push_back(1, 1) = " << val_check.push_back(Point(1, 1)) << endl;
     cout << "validation check: push_back(1, 2) = " << val_check.push_back(Point(1, 2)) << endl;
-    
+
     ClosedLine cl = ClosedLine(&l1);
     Polygon p = Polygon(&l1);
 
     cout << "Line l1 = " << l1 << " perimeter = " << l1.perimeter() << endl;
     cout << "ClosedLine lc = " << cl << " perimeter = " << cl.perimeter() << endl;
-    cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl << endl;
-    
+    cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl
+         << endl;
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

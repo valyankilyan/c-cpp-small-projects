@@ -140,7 +140,7 @@ Line Line::operator+(const Point& p) {
 }
 
 void Line::operator+=(const Line& l) {
-    for (auto p : l.cords) {
+    for (auto &p : l.cords) {
         this->push_back(p);
     }
 }
@@ -236,6 +236,10 @@ bool Line::validate() {
     if (ans) {
         a[2] = cords.begin();
         ans = ans && !same_straight_check(a);
+    }
+
+    if (!ans) {
+        cerr << " {Validation hasn't passed} ";
     }
     return ans;
 }
