@@ -4,6 +4,9 @@
 #include "line.h"
 
 class Polygon : public ClosedLine {
+    public:
+    using ClosedLine::ClosedLine;
+
    protected:
    /**
     * @brief Returns true if segments intersects 

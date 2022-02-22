@@ -120,6 +120,11 @@ long double Line::perimeter() {
     return ans;
 }
 
+long double ClosedLine::perimeter() {
+    long double ans = Line::perimeter();
+    return ans + this->front().vector_lenght(this->back());
+}
+
 Line Line::operator+(const Line& l) {
     Line temp = *this;
     for (auto p : l.cords) {
@@ -178,11 +183,6 @@ ostream& operator<<(ostream& os, const Line& l) {
     os << "]";
     return os;
 }
-
-// long double ClosedLine::perimeter() {
-//     long double ans = Line::perimeter();
-//     return ans + this->front().vector_lenght(this->back());
-// }
 
 lit Line::find_iter(size_t num) {
     if (num >= cords.size()) {

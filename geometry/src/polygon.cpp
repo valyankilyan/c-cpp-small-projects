@@ -54,4 +54,6 @@ bool Polygon::validate() {
         a[0]++;
         a[1]++;
     }
+
+    return ans;
 }

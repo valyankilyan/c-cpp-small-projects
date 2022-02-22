@@ -2,6 +2,7 @@
 
 #include "../include/line.h"
 #include "../include/point.h"
+#include "../include/polygon.h"
 using namespace std;
 
 int main() {
@@ -97,7 +98,13 @@ int main() {
     cout << "validation check: push_back(1, 1) = " << val_check.push_back(Point(1, 1)) << endl;
     cout << "validation check: push_back(1, 2) = " << val_check.push_back(Point(1, 2)) << endl;
     
+    ClosedLine cl = ClosedLine(&l1);
+    Polygon p = Polygon(&l1);
 
+    cout << "Line l1 = " << l1 << " perimeter = " << l1.perimeter() << endl;
+    cout << "ClosedLine lc = " << cl << " perimeter = " << cl.perimeter() << endl;
+    cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl << endl;
+    
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

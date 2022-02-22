@@ -234,6 +234,8 @@ class Line {
 
 class ClosedLine : public Line {
    public:
+
+    using Line::Line;
     /**
      * @brief Returns perimeter of the closed line
      * 
