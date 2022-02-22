@@ -1,7 +1,7 @@
 CC = g++
 FLAGS = -Wextra -Wall -g -c
 DIR = src
-MODULES = point.o line.o polygon.o main.o
+MODULES = point.o line.o closedline.o polygon.o main.o
 
 all: geometry clean
 
@@ -16,6 +16,9 @@ point.o:
 
 line.o:
 		$(CC) $(FLAGS) $(DIR)/line.cpp
+
+closedline.o:
+		$(CC) $(FLAGS) $(DIR)/closedline.cpp
 
 polygon.o:
 		$(CC) $(FLAGS) $(DIR)/polygon.cpp

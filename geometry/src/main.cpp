@@ -59,8 +59,8 @@ int main() {
     int n = 5;
     int f = 1, s = 3;
     while (n--) {
-        f+= s;
-        s+= f;
+        f += s;
+        s += f;
         Point np = Point(f, s);
         line->push_back(np);
     }
@@ -115,6 +115,13 @@ int main() {
     cout << "Line l1 = " << l1 << " perimeter = " << l1.perimeter() << endl;
     cout << "ClosedLine lc = " << cl << " perimeter = " << cl.perimeter() << endl;
     cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl
+         << endl;
+
+    Polygon triangle;
+    triangle.push_back(Point(-1, 3));
+    triangle.push_back(Point(-2, -2));
+    triangle.push_back(Point(4, -1));
+    cout << "area of polygon " << triangle << " = " << triangle.area() << endl
          << endl;
 
     // for (int i = n; i > 0 ; i--) {

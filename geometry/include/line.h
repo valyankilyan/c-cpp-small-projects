@@ -10,12 +10,6 @@
 using namespace std;
 
 class Line {
-    /**
-     * @brief Points of line
-     *
-     */
-    list<Point> cords;
-
    public:
     /**
      * @brief Construct an empty Line object
@@ -238,6 +232,12 @@ class Line {
      * @param location validation class in wich error was found
      */
     void validation_error(string location);
+
+    /**
+     * @brief Points of line
+     *
+     */
+    list<Point> cords;
 };
 
 #endif

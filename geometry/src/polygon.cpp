@@ -1,5 +1,20 @@
 #include "../include/polygon.h"
 
+long double Polygon::area() {
+    lit f = find_iter(0), s = find_iter(1);
+    long double a = 0, b = 0;
+    while (s != cords.end()) {
+        a += (*f)[0] * (*s)[1];
+        b += (*f)[1] * (*s)[0];
+        f++;
+        s++;
+    }
+    a += (*f)[0] * front()[1];
+    b += (*f)[1] * front()[0];
+
+    return (a - b) / 2;
+}
+
 bool Polygon::find_intersection(const lit *a, const lit *b, Point *ans = NULL) {
     long double k1, k2, b1, b2;
     find_coefficients(&k1, &b1, &(*(a[0])), &(*(a[2])));
