@@ -120,11 +120,6 @@ long double Line::perimeter() {
     return ans;
 }
 
-long double ClosedLine::perimeter() {
-    long double ans = Line::perimeter();
-    return ans + this->front().vector_lenght(this->back());
-}
-
 Line Line::operator+(const Line& l) {
     Line temp = *this;
     for (auto p : l.cords) {
