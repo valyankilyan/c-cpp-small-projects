@@ -7,57 +7,30 @@ using namespace std;
 
 Line::Line() {}
 
-Line::Line(const Line* l) {
-    for (auto& p : l->cords) {
-        cords.push_back(p);
-        if (!validate()) {
+Line::Line(Line* l) {
+    validate();
+    cords = vector<Point>();
+    for (int i = 0; i < l->size(); i++) {
+        if (validate()) {
+            cords.push_back(l->operator[](i));
+        } else {
             cords.pop_back();
             break;
         }
     }
 }
 
-// Line Line::operator=(const Line* l) {
-//     cout << "second const\n" << endl;
-//     for (auto &p: l->cords) {
-//         cords.push_back(p);
-//     }
-//     return *this;
-// }
-
-bool Line::push_front(Point p) {
-    cords.push_front(p);
-    if (!this->validate()) {
-        cords.pop_front();
-        return 0;
-    }
-    return 1;
-}
-
 bool Line::push_back(Point p) {
     cords.push_back(p);
-    if (!this->validate()) {
+    if (validate()) {
         cords.pop_back();
         return 0;
     }
     return 1;
 }
 
-bool Line::pop_front() {
-    if (this->cords.size() == 0) {
-        return 0;
-    }
-    Point save = this->front();
-    cords.pop_front();
-    if (!this->validate()) {
-        cords.push_front(save);
-        return 0;
-    }
-    return 1;
-}
-
 bool Line::pop_back() {
-    if (this->cords.size() == 0) {
+    if (cords.size() == 0) {
         return 0;
     }
     Point save = cords.back();
@@ -69,57 +42,64 @@ bool Line::pop_back() {
     return 1;
 }
 
-Point& Line::front() {
-    return cords.front();
-}
-
-Point& Line::back() {
-    return cords.back();
-}
-
 bool Line::add_point(size_t num, Point p) {
-    auto it = this->find_iter(num);
-    if (it == cords.end()) {
+    if (num >= size()) {
         return 0;
+    } else if (num == size()) {
+        return push_back(p);
+    } else {
+        Point cur_point = p;
+        for (size_t i = num; i < size(); i++) {
+            Point save = cords[i];
+            cords[i] = cur_point;
+            cur_point = save;
+        }
+        cords.push_back(cur_point);
+        if (validate()) {
+            return 1;
+        } else {
+            return delete_point(num);
+        }
     }
-    cords.emplace(it, p);
-    return 1;
 }
 
 bool Line::delete_point(size_t num) {
-    auto it = this->find_iter(num);
-    if (it == cords.end()) {
+    if (num >= size()) {
         return 0;
+    } else if (num == size()) {
+        return pop_back();
+    } else {
+        Point save = cords[num];
+        for (size_t i = num; i < size() - 1; i++) {
+            cords[i] = cords[i + 1];
+        }
+        cords.pop_back();
+        if (validate()) {
+            return 1;
+        } else {
+            return add_point(num, save);
+        }
     }
-    cords.erase(it);
-    return 1;
 }
 
 Point& Line::get_point(size_t num) {
-    if (num >= cords.size()) {
-        return *cords.rbegin();
-    }
-    auto it = Line::find_iter(num);
-    return *it;
+    return cords[num];
 }
 
 Point& Line::operator[](size_t num) {
     return Line::get_point(num);
 }
 
-int Line::size() {
+int Line::size() const {
     return cords.size();
 }
 
-long double Line::perimeter() {
+long double Line::perimeter() const {
     long double ans = 0;
-    auto it = cords.begin();
-    Point last = *it;
-    while (++it != cords.end()) {
-        ans += (*it).vector_lenght(last);
-        last = *it;
+    for (size_t i = 0; i < size() - 1; i++) {
+        ans += cords[i].vector_lenght(cords[i + 1]);
     }
-    return ans;
+    return ans + cords[0].vector_lenght(cords[size() - 1]);
 }
 
 Line Line::operator+(const Line& l) {
@@ -137,23 +117,21 @@ Line Line::operator+(const Point& p) {
 }
 
 void Line::operator+=(const Line& l) {
-    for (auto &p : l.cords) {
-        this->push_back(p);
+    for (auto& p : l.cords) {
+        push_back(p);
     }
 }
 
 void Line::operator+=(const Point& p) {
-    this->push_back(p);
+    push_back(p);
 }
 
 bool Line::operator==(const Line& line) {
     bool ans = this->cords.size() == line.cords.size();
     auto it1 = this->cords.begin();
     auto it2 = line.cords.begin();
-    for (int i = 0; ans && it1 != this->cords.end(); i++) {
-        ans = ans && (*it1 == *it2);
-        it1++;
-        it2++;
+    for (int i = 0; i < this->size() && ans; i++) {
+        ans = ans && (cords[i] == line.cords[i]);
     }
     return ans;
 }
@@ -181,18 +159,8 @@ ostream& operator<<(ostream& os, const Line& l) {
     return os;
 }
 
-lit Line::find_iter(size_t num) {
-    if (num >= cords.size()) {
-        return cords.end();
-    }
-    auto it = cords.begin();
-    while (num--) {
-        it++;
-    }
-    return it;
-}
 
-bool Line::find_coefficients(long double *k, long double *b, Point* f, Point* s) {
+bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s) {
     if (*f == *s) {
         return 0;
     }
@@ -201,17 +169,17 @@ bool Line::find_coefficients(long double *k, long double *b, Point* f, Point* s)
     return 1;
 }
 
-bool Line::same_straight_check(lit* a) {
-    long double k, b;
-    if (!find_coefficients(&k, &b, &(*(a[0])), &(*(a[1])))) {
+bool Line::same_straight_check(Point* a, Point* b, Point* c) {
+    long double K, B;
+    if (!find_coefficients(&K, &B, a, b)) {
         return 1;
     }
-    return (*(a[2]))[0] == (k * (*(a[2]))[1] + b);
+    return abs((*c)[0]*K + B - (*c)[1]) < eps;
 }
 
-bool Line::is_between(const Point *a1, const Point *a2, const Point *b) {
-    return (*b)[0] > min((*a1)[0], (*a2)[0]) &&
-           (*b)[0] < max((*a1)[0], (*a2)[0]);
+bool Line::is_between(const Point* a, const Point* b, const Point* c) {
+    return (*c)[0] > min((*a)[0], (*b)[0]) &&
+           (*c)[0] < max((*a)[0], (*b)[0]);
 }
 
 bool Line::is_done() {
@@ -223,21 +191,14 @@ bool Line::validate() {
     if (size() < 3) {
         return true;
     }
-    lit a[3];
-    for (int i = 0; i < 3; i++) {
-        a[i] = find_iter(i);
-    }
 
-    bool ans = 1;
-    while (ans && a[2] != cords.end()) {
-        ans = ans && !same_straight_check(a);
-        for (int i = 0; i < 3; i++) {
-            a[i]++;
-        }
+    bool ans = 0;
+    for (size_t i = 0; i < size() - 2; i++) {
+        ans = ans && !same_straight_check(&cords[i], &cords[i+1], &cords[i+2]);
     }
     if (ans) {
-        a[2] = cords.begin();
-        ans = ans && !same_straight_check(a);
+        ans = ans && !same_straight_check(&cords[size()-2], &cords[size() - 1], &cords[0]);
+        ans = ans && !same_straight_check(&cords[0], &cords[size() - 1], &cords[1]);
     }
 
     if (!ans) validation_error("line");

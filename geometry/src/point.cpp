@@ -47,7 +47,7 @@ int Point::get_dimensions() {
     return this->dimensions;
 }
 
-long double Point::vector_lenght(const Point& b) {
+long double Point::vector_lenght(const Point& b) const {
     long double sum = 0;
     for (int i = 0; i < this->dimensions; i++) {
         sum += (b.cords[i] - this->cords[i])*(b.cords[i] - this->cords[i]);

@@ -74,7 +74,7 @@ class Point {
      * @param point end of the vector
      * @return long double vector length
      */
-    long double vector_lenght(const Point& point);
+    long double vector_lenght(const Point& point) const;
 
     /**
      * @brief Adds each coordinate

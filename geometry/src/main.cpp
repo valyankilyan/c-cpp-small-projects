@@ -7,6 +7,16 @@
 using namespace std;
 
 int main() {
+    Line lin = Line();
+    for (int i = 0; i < 4; i++) {
+        lin.push_back(Point(i + i % 2, i + !(i % 2)));        
+    }
+    Polygon plfl(&lin);
+    plfl.push_back(Point(0, 0));
+    cout << "Polygon from line " << endl
+         << endl;
+    return 0;
+
     Point p1 = Point(1, 2);
     Point p2 = Point(0, 0);
 
@@ -125,16 +135,27 @@ int main() {
     cout << "area of polygon " << tr << " = " << tr.area() << endl
          << endl;
 
-    Triangle triangle(&l1);
-    cout << "triangle from line " << l1 << endl;
-    cout << triangle << endl << endl;
+    Triangle trfl = Triangle(&l1);
+    trfl.push_back(Point(0, 0));
+    cout << "triangle from line " << endl
+         << endl;
 
-     ClosedLine clt; 
-     clt.push_back(Point(0, 0));
-     Polygon pt;
-     pt.push_back(Point(0, 0));
-     Triangle tt;
-     tt.push_back(Point(0, 0));
+    Polygon polfl = Polygon(&l1);
+    polfl.push_back(Point(0, 0));
+    cout << "Polygon from line " << endl
+         << endl;
+
+    ClosedLine clfl = ClosedLine(&l1);
+    clfl.push_back(Point(0, 0));
+    cout << "ClosedLine from line " << endl
+         << endl;
+
+    // ClosedLine clt;
+    // clt.push_back(Point(0, 0));
+    // Polygon pt;
+    // pt.push_back(Point(0, 0));
+    // Triangle tt;
+    // tt.push_back(Point(0, 0));
 
     // for (int i = n; i > 0 ; i--) {
     //     Point np = Point(i, i);

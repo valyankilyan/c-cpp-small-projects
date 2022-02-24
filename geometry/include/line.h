@@ -1,13 +1,13 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include <list>
+#include <vector>
 
 #include "point.h"
 
-#define lit _List_iterator<Point>
-
 using namespace std;
+
+#define eps 0.00001
 
 class Line {
    public:
@@ -20,17 +20,8 @@ class Line {
      *
      * @param line src
      */
-    Line(const Line* line);
+    Line(Line* line);
     // Line operator=(const Line* l);
-
-    /**
-     * @brief Adds Point to the front of the line
-     *
-     * @param point
-     * @return true if successed
-     * @return false if validation failed
-     */
-    bool push_front(Point point);
 
     /**
      * @brief add Point to the end of the line
@@ -42,14 +33,6 @@ class Line {
     bool push_back(Point point);
 
     /**
-     * @brief Removes front Point of the line
-     *
-     * @return true if successed
-     * @return false if validation failed
-     */
-    bool pop_front();
-
-    /**
      * @brief Removes last Point of the line
      *
      * @return true if successed
@@ -58,23 +41,14 @@ class Line {
     bool pop_back();
 
     /**
-     * @brief  Returns a read/write reference to the first Point
-     * of the Line.
-     *
-     * @return Point&
-     */
-    Point& front();
-
-    /**
-     * @brief  Returns a read/write reference to the last Point
-     * of the Line.
+     * @brief returns the last element of the line
      *
      * @return Point&
      */
     Point& back();
 
     /**
-     * @brief Constructs Point before the num_th iterator
+     * @brief Adds point on num_th place
      *
      * @param num number of the Point
      * @param point src
@@ -93,10 +67,10 @@ class Line {
     bool delete_point(size_t num);
 
     /**
-     * @brief Returns a read/write reference to the num_th Point
+     * @brief Get the point object
      *
-     * @param num - number of the point
-     * @return Point
+     * @param num
+     * @return Point&
      */
     Point& get_point(size_t num);
 
@@ -113,20 +87,20 @@ class Line {
      *
      * @return int size
      */
-    int size();
+    int size() const;
 
     /**
      * @brief Calculates the length of the figure
      *
      * @return long double length
      */
-    long double perimeter();
+    long double perimeter() const;
 
     /**
      * @brief Returns true if Figure is done
-     * 
-     * @return true 
-     * @return false 
+     *
+     * @return true
+     * @return false
      */
     bool is_done();
 
@@ -189,14 +163,6 @@ class Line {
 
    protected:
     /**
-     * @brief Returns the num_th iterator of the line
-     *
-     * @param num
-     * @return lit
-     */
-    lit find_iter(size_t num);
-
-    /**
      * @brief Returns coefficients of the line equation for vector
      *
      * @param k first coefficient
@@ -213,7 +179,7 @@ class Line {
      * @return true
      * @return false
      */
-    bool same_straight_check(lit* a);
+    bool same_straight_check(Point* a, Point* b, Point* c);
 
     /**
      * @brief Returns true if b is between a1 and a2
@@ -236,7 +202,7 @@ class Line {
 
     /**
      * @brief printing validation error in stderr
-     * 
+     *
      * @param location validation class in wich error was found
      */
     void validation_error(string location);
@@ -245,7 +211,7 @@ class Line {
      * @brief Points of line
      *
      */
-    list<Point> cords;
+    vector<Point> cords;
 };
 
 #endif
