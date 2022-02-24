@@ -5,7 +5,9 @@
 
 class Polygon : public ClosedLine {
    public:
-    using ClosedLine::ClosedLine;
+    Polygon();
+
+    Polygon(Line* l);
 
     /**
      * @brief Returns area of the figure

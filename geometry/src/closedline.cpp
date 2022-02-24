@@ -10,8 +10,3 @@ long double ClosedLine::perimeter() {
 bool ClosedLine::is_done() {
     return size() > 2;
 }
-
-bool ClosedLine::validate() {
-    cout << "ClosedLine validation\n";
-    return Line::validate();
-}

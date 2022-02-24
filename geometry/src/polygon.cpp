@@ -2,9 +2,19 @@
 
 #include <iostream>
 
+Polygon::Polygon() {}
+
+Polygon::Polygon(Line* l) {
+    cords = vector<Point>();
+    for (size_t i = 0; i < l->size(); i++) {
+        push_back(l->operator[](i));
+    }
+}
+
 long double Polygon::area() {
     long double a = 0, b = 0;
-    for (size_t i = 0; i < size(); i++) {
+    for (size_t i = 0; i < size() - 1; i++) {
+        cerr << i << endl;
         a += cords[i][0] * cords[i + 1][1];
         b += cords[i][1] * cords[i + 1][0];
     }
@@ -39,11 +49,13 @@ bool Polygon::validate() {
     cout << "Polygon validation\n";
     if (!ClosedLine::validate()) {
         return 0;
+    } else if (size() < 3) {
+        return 1;
     }
 
     bool ans = 1;
     for (size_t i = 0; i < size() - 3 && ans; i++) {
-        for (size_t j = i + 2; j < size() - 1 && ans; i++) {
+        for (size_t j = i + 2; j < size() - 1 && ans; j++) {
             ans = ans && !find_intersection(&cords[i], &cords[i+1], &cords[j], &cords[j+1]);
         }        
     }

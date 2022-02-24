@@ -8,15 +8,9 @@ using namespace std;
 Line::Line() {}
 
 Line::Line(Line* l) {
-    validate();
     cords = vector<Point>();
     for (size_t i = 0; i < l->size(); i++) {
-        if (validate()) {
-            cords.push_back(l->operator[](i));
-        } else {
-            cords.pop_back();
-            break;
-        }
+        push_back(l->operator[](i));
     }
 }
 
@@ -174,8 +168,6 @@ bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s)
 bool Line::same_straight_check(Point* a, Point* b, Point* c) {
     long double K, B;
     find_coefficients(&K, &B, a, b);
-    cout << "coef for " << *a << " " << *b << " = " << K << " " << B << endl;
-    cout << " c = " << *c << " | " << (abs((*c)[0] * K + B - (*c)[1]) < eps) << endl;
     return abs((*c)[0] * K + B - (*c)[1]) < eps;
 }
 
@@ -193,14 +185,9 @@ bool Line::validate() {
     if (size() < 3) {
         return true;
     }
-
     bool ans = 1;
     for (size_t i = 0; i < size() - 2; i++) {
         ans = ans && !same_straight_check(&cords[i], &cords[i + 1], &cords[i + 2]);
-    }
-    if (ans) {
-        ans = ans && !same_straight_check(&cords[size() - 2], &cords[size() - 1], &cords[0]);
-        ans = ans && !same_straight_check(&cords[0], &cords[size() - 1], &cords[1]);
     }
 
     if (!ans) validation_error("line");

@@ -5,7 +5,9 @@
 
 class Triangle : public Polygon {
    public:
-    using Polygon::Polygon;
+    Triangle();
+
+    Triangle(Line* l);
 
     /**
      * @brief Returns true if triangle is done
