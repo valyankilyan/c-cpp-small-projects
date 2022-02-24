@@ -4,7 +4,7 @@
 
 long double ClosedLine::perimeter() {
     long double ans = Line::perimeter();
-    return ans + this->front().vector_lenght(this->back());
+    return ans + cords[0].vector_lenght(cords[size() - 1]);
 }
 
 bool ClosedLine::is_done() {

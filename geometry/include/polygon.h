@@ -25,7 +25,7 @@ class Polygon : public ClosedLine {
      * @return true
      * @return false
      */
-    bool find_intersection(const Point* a1, const Point* a2, const Point* b1, const Point* b2, const Point* ans);
+    bool find_intersection(Point* a1, Point* a2, Point* b1, Point* b2);
 
     /**
      * @brief Returns true if validation passed

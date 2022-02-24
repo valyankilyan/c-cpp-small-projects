@@ -15,7 +15,7 @@ int main() {
     plfl.push_back(Point(0, 0));
     cout << "Polygon from line " << endl
          << endl;
-    return 0;
+//     return 0;
 
     Point p1 = Point(1, 2);
     Point p2 = Point(0, 0);

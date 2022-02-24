@@ -10,7 +10,7 @@ Line::Line() {}
 Line::Line(Line* l) {
     validate();
     cords = vector<Point>();
-    for (int i = 0; i < l->size(); i++) {
+    for (size_t i = 0; i < l->size(); i++) {
         if (validate()) {
             cords.push_back(l->operator[](i));
         } else {
@@ -22,7 +22,7 @@ Line::Line(Line* l) {
 
 bool Line::push_back(Point p) {
     cords.push_back(p);
-    if (validate()) {
+    if (!validate()) {
         cords.pop_back();
         return 0;
     }
@@ -35,7 +35,7 @@ bool Line::pop_back() {
     }
     Point save = cords.back();
     cords.pop_back();
-    if (!this->validate()) {
+    if (!validate()) {
         cords.push_back(save);
         return 0;
     }
@@ -90,7 +90,7 @@ Point& Line::operator[](size_t num) {
     return Line::get_point(num);
 }
 
-int Line::size() const {
+size_t Line::size() const {
     return cords.size();
 }
 
@@ -128,9 +128,7 @@ void Line::operator+=(const Point& p) {
 
 bool Line::operator==(const Line& line) {
     bool ans = this->cords.size() == line.cords.size();
-    auto it1 = this->cords.begin();
-    auto it2 = line.cords.begin();
-    for (int i = 0; i < this->size() && ans; i++) {
+    for (size_t i = 0; i < this->size() && ans; i++) {
         ans = ans && (cords[i] == line.cords[i]);
     }
     return ans;
@@ -159,22 +157,26 @@ ostream& operator<<(ostream& os, const Line& l) {
     return os;
 }
 
-
 bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s) {
     if (*f == *s) {
         return 0;
     }
+    if (abs((*f)[1] - (*s)[1]) < eps) {
+        *k = 0;
+        *b = (*f)[1];
+        return 1;
+    }    
     *k = ((*f)[0] - (*s)[0]) / ((*f)[1] - (*s)[1]);
-    *b = (*f)[0] - *k * (*f)[1];
+    *b = (*f)[1] - *k * (*f)[0];    
     return 1;
 }
 
 bool Line::same_straight_check(Point* a, Point* b, Point* c) {
     long double K, B;
-    if (!find_coefficients(&K, &B, a, b)) {
-        return 1;
-    }
-    return abs((*c)[0]*K + B - (*c)[1]) < eps;
+    find_coefficients(&K, &B, a, b);
+    cout << "coef for " << *a << " " << *b << " = " << K << " " << B << endl;
+    cout << " c = " << *c << " | " << (abs((*c)[0] * K + B - (*c)[1]) < eps) << endl;
+    return abs((*c)[0] * K + B - (*c)[1]) < eps;
 }
 
 bool Line::is_between(const Point* a, const Point* b, const Point* c) {
@@ -192,12 +194,12 @@ bool Line::validate() {
         return true;
     }
 
-    bool ans = 0;
+    bool ans = 1;
     for (size_t i = 0; i < size() - 2; i++) {
-        ans = ans && !same_straight_check(&cords[i], &cords[i+1], &cords[i+2]);
+        ans = ans && !same_straight_check(&cords[i], &cords[i + 1], &cords[i + 2]);
     }
     if (ans) {
-        ans = ans && !same_straight_check(&cords[size()-2], &cords[size() - 1], &cords[0]);
+        ans = ans && !same_straight_check(&cords[size() - 2], &cords[size() - 1], &cords[0]);
         ans = ans && !same_straight_check(&cords[0], &cords[size() - 1], &cords[1]);
     }
 

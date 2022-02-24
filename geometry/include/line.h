@@ -87,7 +87,7 @@ class Line {
      *
      * @return int size
      */
-    int size() const;
+    size_t size() const;
 
     /**
      * @brief Calculates the length of the figure
