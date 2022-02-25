@@ -167,6 +167,9 @@ int main() {
      cout << rp << endl << endl;
 
 
+     cout << typeid(trap).name() << endl;
+     cout << typeid(rp).name() << endl;
+
     //     ClosedLine clfl = ClosedLine(&l1);
     //     clfl.push_back(Point(0, 0));
     //     cout << "ClosedLine from line " << endl
