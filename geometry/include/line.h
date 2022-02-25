@@ -102,7 +102,7 @@ class Line {
      * @return true
      * @return false
      */
-    bool is_done();
+    virtual bool is_done();
 
     /**
      * @brief Concatinates two lines

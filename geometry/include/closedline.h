@@ -14,7 +14,7 @@ class ClosedLine : public Line {
 
     long double perimeter();
 
-    bool is_done();
+    virtual bool is_done() override;
 };
 
 #endif

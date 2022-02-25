@@ -9,13 +9,13 @@ using namespace std;
 int main() {
     Line lin = Line();
     for (int i = 0; i < 4; i++) {
-        lin.push_back(Point(i + i % 2, i + !(i % 2)));        
+        lin.push_back(Point(i + i % 2, i + !(i % 2)));
     }
     Polygon plfl(&lin);
     plfl.push_back(Point(0, 0));
     cout << "Polygon from line " << endl
          << endl;
-//     return 0;
+    //     return 0;
 
     Point p1 = Point(1, 2);
     Point p2 = Point(0, 0);
@@ -128,27 +128,28 @@ int main() {
     cout << "Polygon p = " << p << " perimeter = " << p.perimeter() << endl
          << endl;
 
-    Polygon tr;
+    cout << "###Creating polygon\n";
+    Polygon tr = Polygon();
     tr.push_back(Point(-1, 3));
     tr.push_back(Point(-2, -2));
     tr.push_back(Point(4, -1));
     cout << "area of polygon " << tr << " = " << tr.area() << endl
          << endl;
 
+    cout << "###Triangle from line " << endl;
     Triangle trfl = Triangle(&l1);
     trfl.push_back(Point(0, 0));
-    cout << "triangle from line " << endl
-         << endl;
+    cout << trfl << endl << endl;
 
+    cout << "###Polygon from line " << endl;
     Polygon polfl = Polygon(&l1);
     polfl.push_back(Point(0, 0));
-    cout << "Polygon from line " << endl
-         << endl;
+    cout << polfl << endl << endl;
 
-    ClosedLine clfl = ClosedLine(&l1);
-    clfl.push_back(Point(0, 0));
-    cout << "ClosedLine from line " << endl
-         << endl;
+    //     ClosedLine clfl = ClosedLine(&l1);
+    //     clfl.push_back(Point(0, 0));
+    //     cout << "ClosedLine from line " << endl
+    //          << endl;
 
     // ClosedLine clt;
     // clt.push_back(Point(0, 0));

@@ -15,7 +15,7 @@ class Triangle : public Polygon {
      * @return true
      * @return false
      */
-    bool is_done();
+    virtual bool is_done() override;
 
    protected:
     /**
