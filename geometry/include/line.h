@@ -67,6 +67,12 @@ class Line {
     bool delete_point(size_t num);
 
     /**
+     * @brief clears the Line
+     * 
+     */
+    void clear();
+
+    /**
      * @brief Get the point object
      *
      * @param num

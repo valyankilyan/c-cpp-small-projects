@@ -4,7 +4,8 @@
 #include "line.h"
 #include "point.h"
 
-class Segment : Line {
+class Segment : public Line {
+   public:
     /**
      * @brief Construct a new Segment object
      *
@@ -16,9 +17,17 @@ class Segment : Line {
      *
      * @param line
      */
-    Segment(Line *line);
+    Segment(Line* line);
 
-   private:
+    /**
+     * @brief Construct a new Segment object from 2 points
+     *
+     * @param a
+     * @param b
+     */
+    Segment(Point a, Point b);
+
+   protected:
     /**
      * @brief checks whether Segment is done
      *

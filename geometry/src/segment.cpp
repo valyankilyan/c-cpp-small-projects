@@ -9,6 +9,11 @@ Segment::Segment(Line *l) {
     }
 }
 
+Segment::Segment(Point a, Point b) {
+    cords.push_back(a);
+    cords.push_back(b);
+}
+
 bool Segment::is_done() {
     return size() == 2;
 }

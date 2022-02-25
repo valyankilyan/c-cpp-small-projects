@@ -4,6 +4,8 @@
 #include "../include/point.h"
 #include "../include/polygon.h"
 #include "../include/triangle.h"
+#include "../include/segment.h"
+#include "../include/trapezium.h"
 using namespace std;
 
 int main() {
@@ -145,6 +147,20 @@ int main() {
     Polygon polfl = Polygon(&l1);
     polfl.push_back(Point(0, 0));
     cout << polfl << endl << endl;
+
+    cout << "###Trapezium from push_back\n";
+    Trapezium trap = Trapezium();
+    trap.push_back(Point(0, 0));
+    trap.push_back(Point(0, 2));
+    trap.push_back(Point(1, -1));
+    trap.push_back(Point(1, 1));   
+    cout << trap << endl << endl;
+
+    cout << "###Trapeium from two Segments\n";
+    Trapezium traps = Trapezium(Segment(Point(0, 0), Point(2, 0)), Segment(Point(8, 4), Point(-1, 4)));
+    cout << trap << endl << endl;
+
+
 
     //     ClosedLine clfl = ClosedLine(&l1);
     //     clfl.push_back(Point(0, 0));
