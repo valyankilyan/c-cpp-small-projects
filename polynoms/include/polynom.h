@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <iostream>
+#include <cmath>
+
+#define MAX 1000006
 
 using namespace std;
 
@@ -17,22 +20,23 @@ class Polynom {
     Polynom operator-(Polynom &p);
     void operator+=(Polynom &p);
     void operator-=(Polynom &p);
-    Polynom operator+(Member m);
-    Polynom operator-(Member m);
-    void operator+=(Member m);
-    void operator-=(Member m);
     Polynom operator*(long double k);
     Polynom operator/(long double k);
     void operator*=(long double k);
-    void operator*=(long double k);
+    void operator/=(long double k);
 
     friend ostream& operator<<(ostream& os, Polynom &p);
-    friend ostream& operator>>(ostream& os, Polynom &p);
+    friend istream& operator>>(istream& is, Polynom &p);
 
     long double& operator[](size_t num);
+
+    size_t size();
 
     private:
     vector <long double> coef;
 };
+
+ostream& operator<<(ostream& os, Polynom &p);
+istream& operator>>(istream& is, Polynom &p);
 
 #endif
