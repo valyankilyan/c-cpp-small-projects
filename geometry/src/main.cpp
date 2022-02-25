@@ -6,6 +6,7 @@
 #include "../include/triangle.h"
 #include "../include/segment.h"
 #include "../include/trapezium.h"
+#include "../include/regularpolygon.h"
 using namespace std;
 
 int main() {
@@ -160,6 +161,10 @@ int main() {
     Trapezium traps = Trapezium(Segment(Point(0, 0), Point(2, 0)), Segment(Point(8, 4), Point(-1, 4)));
     cout << trap << endl << endl;
 
+
+     cout << "###Regular Polygon \n";
+     RegularPolygon rp = RegularPolygon(Point(0, 0), 1, 6, 0);
+     cout << rp << endl << endl;
 
 
     //     ClosedLine clfl = ClosedLine(&l1);

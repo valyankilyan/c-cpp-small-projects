@@ -5,6 +5,8 @@
 #include <math.h>
 using namespace std;
 
+static long double eps = 0.00001;
+
 Point::Point()
     : dimensions(2), cords(new long double[this->dimensions]) {}
 
@@ -113,7 +115,7 @@ void Point::operator/=(const long double k) {
 bool Point::operator==(const Point& b) {
     bool ans = 1;
     for (int i = 0; i < dimensions; i++) {
-        ans = ans && (cords[i] == b.cords[i]);
+        ans = ans && (abs(cords[i] - b.cords[i]) < eps);
     }
     return ans;
 }

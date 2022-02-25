@@ -2,7 +2,7 @@ CC = g++
 FLAGS = -Wextra -Wall -g -c
 DIR = src
 MODULES = point.o segment.o line.o closedline.o polygon.o \
-triangle.o trapezium.o main.o
+triangle.o trapezium.o regularpolygon.o main.o
 
 all: geometry clean
 
@@ -32,6 +32,9 @@ triangle.o:
 
 trapezium.o:
 	$(CC) $(FLAGS) $(DIR)/trapezium.cpp
+
+regularpolygon.o:
+		$(CC) $(FLAGS) $(DIR)/regularpolygon.cpp
 
 clean:
 	rm -f $(MODULES)
