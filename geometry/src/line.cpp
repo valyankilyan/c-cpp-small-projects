@@ -77,7 +77,7 @@ bool Line::delete_point(size_t num) {
 }
 
 void Line::clear() {
-    cords.clear();
+    cords.resize(0);
 }
 
 Point& Line::get_point(size_t num) {
@@ -155,7 +155,7 @@ ostream& operator<<(ostream& os, const Line& l) {
     return os;
 }
 
-bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s) {
+bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s) {   
     if (*f == *s) {
         return 0;
     }
@@ -172,8 +172,8 @@ bool Line::find_coefficients(long double* k, long double* b, Point* f, Point* s)
 bool Line::same_straight_check(Point* a, Point* b, Point* c) {
     long double K, B;
     find_coefficients(&K, &B, a, b);
-    cout << "same_straight coeff : k = " << K << " b = " << B;
-    cout << " point =  " << (*c)[0] << " " << (*c)[1] << endl;
+    // cout << "same_straight coeff : k = " << K << " b = " << B;
+    // cout << " point =  " << (*c)[0] << " " << (*c)[1] << endl;
     return abs((*c)[0] * K + B - (*c)[1]) < eps;
 }
 
@@ -190,13 +190,11 @@ bool Line::validate() {
     cout << "Line validation" << endl;
     if (size() < 3) {
         return 1;
-    }
-    cout << "wtf\n";
+    }    
     bool ans = 1;
     for (size_t i = 0; i < size() - 2; i++) {
         ans = ans && !same_straight_check(&cords[i], &cords[i + 1], &cords[i + 2]);
-    }
-    cout << "wtf\n";
+    }    
 
     if (!ans) validation_error("line");
     return ans;
