@@ -6,7 +6,7 @@ MODULES = Field.o BMP.o BMP_converter.o main.o
 all: game_of_life clean
 
 game_of_life: $(MODULES)
-	gcc $(MODULES) -o game_of_life
+	$(CC) $(MODULES) -o game_of_life
 
 main.o: Field.o BMP.o BMP_converter.o
 	$(CC) $(FLAGS) $(DIR)/main.c
