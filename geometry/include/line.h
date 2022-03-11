@@ -49,7 +49,7 @@ class Line {
 
     /**
      * @brief Adds point on num_th place
-     *
+     * 
      * @param num number of the Point
      * @param point src
      * @return true if successed

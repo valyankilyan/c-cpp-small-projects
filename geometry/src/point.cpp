@@ -41,7 +41,7 @@ void Point::operator=(const Point& b) {
     }
 }
 
-pair<long double, long double> Point::get() {
+pair<long double, long double> Point::get_coordinates() {
     return make_pair(this->cords[0], this->cords[1]);
 }
 

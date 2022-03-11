@@ -59,7 +59,7 @@ class Point {
      *
      * @return pair<long double, long double> coordinates
      */
-    pair<long double, long double> get();
+    pair<long double, long double> get_coordinates();
 
     /**
      * @brief Get the dimensions conunt
