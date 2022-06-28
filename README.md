@@ -2,4 +2,4 @@
 
 Small projects on c and c++ usually from my labs in university
 
-Особенно рекомендую заглянуть на GameOfLife, geometry и my_archive
+Особенно рекомендую заглянуть на game_of_life, geometry и my_archive
